@@ -11,6 +11,6 @@ class Adminindex extends CI_Controller {
 			'recipes' => $recipes 
 			);
 		$this->load->helper('url');
-		$this->load->view('admin\index',$data);
+		$this->load->view('admin/index',$data);
 	}
 }
