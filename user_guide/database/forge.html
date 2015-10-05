@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Database Forge Class &mdash; CodeIgniter 3.0.0 documentation</title>
+  <title>Database Forge Class &mdash; CodeIgniter 3.0.1 documentation</title>
   
 
   
@@ -26,11 +26,11 @@
 
   
   
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
   
 
   
-    <link rel="top" title="CodeIgniter 3.0.0 documentation" href="../index.html"/>
+    <link rel="top" title="CodeIgniter 3.0.1 documentation" href="../index.html"/>
         <link rel="up" title="Database Reference" href="index.html"/>
         <link rel="next" title="Database Utility Class" href="utilities.html"/>
         <link rel="prev" title="Database Caching Class" href="caching.html"/> 
@@ -397,13 +397,17 @@ string into the field definitions with add_field()</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
+<p class="last">Passing raw strings as fields cannot be followed by <tt class="docutils literal"><span class="pre">add_key()</span></tt> calls on those fields.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
 <p class="last">Multiple calls to add_field() are cumulative.</p>
 </div>
 </div>
 <div class="section" id="creating-an-id-field">
 <h4>Creating an id field<a class="headerlink" href="#creating-an-id-field" title="Permalink to this headline">¶</a></h4>
 <p>There is a special exception for creating id fields. A field with type
-id will automatically be assinged as an INT(9) auto_incrementing
+id will automatically be assigned as an INT(9) auto_incrementing
 Primary Key.</p>
 <div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbforge</span><span class="o">-&gt;</span><span class="na">add_field</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
 <span class="c1">// gives id INT(9) NOT NULL AUTO_INCREMENT</span>
@@ -468,7 +472,7 @@ and <em>dbcollat</em> values, as long as they are not empty (MySQL only).</p>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbforge</span><span class="o">-&gt;</span><span class="na">drop_table</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">);</span>
 
 <span class="c1">// Produces: DROP TABLE IF EXISTS table_name</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbforge</span><span class="o">-&gt;</span><span class="na">drop_table</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbforge</span><span class="o">-&gt;</span><span class="na">drop_table</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span><span class="k">TRUE</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -805,7 +809,7 @@ change the name you can add a &#8220;name&#8221; key into the field defining arr
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014 - 2015, British Columbia Institute of Technology.
-      Last updated on Mar 30, 2015.
+      Last updated on Aug 07, 2015.
     </p>
   </div>
 
@@ -826,7 +830,7 @@ change the name you can add a &#8220;name&#8221; key into the field defining arr
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'3.0.0',
+            VERSION:'3.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false

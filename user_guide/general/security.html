@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Security &mdash; CodeIgniter 3.0.0 documentation</title>
+  <title>Security &mdash; CodeIgniter 3.0.1 documentation</title>
   
 
   
@@ -26,11 +26,11 @@
 
   
   
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
   
 
   
-    <link rel="top" title="CodeIgniter 3.0.0 documentation" href="../index.html"/>
+    <link rel="top" title="CodeIgniter 3.0.1 documentation" href="../index.html"/>
         <link rel="up" title="General Topics" href="index.html"/>
         <link rel="next" title="PHP Style Guide" href="styleguide.html"/>
         <link rel="prev" title="Alternate PHP Syntax for View Files" href="alternative_php.html"/> 
@@ -302,7 +302,7 @@ data from the SERVER array, you are encouraged to practice this three
 step approach:</p>
 <ol class="arabic simple">
 <li>Validate the data to ensure it conforms to the correct type, length,
-size, etc. (sometimes this step can replace step one)</li>
+size, etc.</li>
 <li>Filter the data as if it were tainted.</li>
 <li>Escape the data before submitting it into your database or outputting
 it to a browser.</li>
@@ -372,10 +372,13 @@ which we also provide in our compatibility layer.</p>
 feature, just randomly generate a new, one-time (this is also important)
 password and send that instead.</p>
 </li>
-<li><p class="first">DO NOT put artificial limits on your users&#8217; passwords.</p>
-<p>There&#8217;s no point in forcing a rule that a password can only be up to
-a number of characters, or that it can&#8217;t contain a certain set of
-special characters.</p>
+<li><p class="first">DO NOT put unnecessary limits on your users&#8217; passwords.</p>
+<p>If you&#8217;re using a hashing algorithm other than BCrypt (which has a limit
+of 72 characters), you should set a relatively high limit on password
+lengths in order to mitigate DoS attacks - say, 1024 characters.</p>
+<p>Other than that however, there&#8217;s no point in forcing a rule that a
+password can only be up to a number of characters, or that it can&#8217;t
+contain a certain set of special characters.</p>
 <p>Not only does this <strong>reduce</strong> security instead of improving it, but
 there&#8217;s literally no reason to do it. No technical limitations and
 no (practical) storage constraints apply once you&#8217;ve hashed them, none!</p>
@@ -436,7 +439,7 @@ attacker.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014 - 2015, British Columbia Institute of Technology.
-      Last updated on Mar 30, 2015.
+      Last updated on Aug 07, 2015.
     </p>
   </div>
 
@@ -457,7 +460,7 @@ attacker.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'3.0.0',
+            VERSION:'3.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false

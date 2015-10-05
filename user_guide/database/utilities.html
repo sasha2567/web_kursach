@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Database Utility Class &mdash; CodeIgniter 3.0.0 documentation</title>
+  <title>Database Utility Class &mdash; CodeIgniter 3.0.1 documentation</title>
   
 
   
@@ -26,11 +26,11 @@
 
   
   
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
   
 
   
-    <link rel="top" title="CodeIgniter 3.0.0 documentation" href="../index.html"/>
+    <link rel="top" title="CodeIgniter 3.0.1 documentation" href="../index.html"/>
         <link rel="up" title="Database Reference" href="index.html"/>
         <link rel="next" title="DB Driver Reference" href="db_driver_reference.html"/>
         <link rel="prev" title="Database Forge Class" href="forge.html"/> 
@@ -285,7 +285,7 @@ database.</p>
 driver must already be running, since the utilities class relies on it.</p>
 </div>
 <p>Load the Utility Class as follows:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="p">()</span>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>You can also pass another database object to the DB Utility loader, in case
@@ -303,7 +303,7 @@ value as the first one if you wish to skip it.</p>
 </div>
 <p>Once initialized you will access the methods using the <tt class="docutils literal"><span class="pre">$this-&gt;dbutil</span></tt>
 object:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">some_method</span><span class="p">()</span>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">some_method</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -333,7 +333,7 @@ Returns a boolean TRUE/FALSE. Usage example:</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Replace <em>database_name</em> with the name of the table you are
+<p class="last">Replace <em>database_name</em> with the name of the database you are
 looking for. This method is case sensitive.</p>
 </div>
 </div>
@@ -383,7 +383,7 @@ FALSE on failure.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Not all database platforms support table optimization. It
+<p class="last">Not all database platforms support database optimization. It
 it is mostly for use with MySQL.</p>
 </div>
 </div>
@@ -457,7 +457,7 @@ backup data can be compressed in either Zip or Gzip format.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>For Interbase/Firebird databases, the backup file name is the only parameter.</p>
-<p class="last">Eg. $this-&gt;dbutil-&gt;backup(&#8216;db_backup_filename&#8217;);</p>
+<p class="last">$this-&gt;dbutil-&gt;backup(&#8216;db_backup_filename&#8217;);</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -474,7 +474,7 @@ have root privileges.</p>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="p">();</span>
 
 <span class="c1">// Backup your entire database and assign it to a variable</span>
-<span class="nv">$backup</span> <span class="o">=&amp;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">backup</span><span class="p">();</span>
+<span class="nv">$backup</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">backup</span><span class="p">();</span>
 
 <span class="c1">// Load the file helper and write the file to your server</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">);</span>
@@ -770,7 +770,7 @@ zip compression.</td>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014 - 2015, British Columbia Institute of Technology.
-      Last updated on Mar 30, 2015.
+      Last updated on Aug 07, 2015.
     </p>
   </div>
 
@@ -791,7 +791,7 @@ zip compression.</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'3.0.0',
+            VERSION:'3.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false

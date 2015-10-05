@@ -14,9 +14,8 @@ class Recipe extends CI_Model {
      */
     function add($data){
         $id = count($this->getlist()) + 1;
-        $data['recipe_id'] = $id;
+        $data[$this->key_id] = $id;
         $this->db->insert($this->table, $data);
-        //return $this->db->insert_id(); 
     }
 
     /**
@@ -36,7 +35,7 @@ class Recipe extends CI_Model {
     }
 
     /**
-     * get info about good
+     * get info about 
      */
     function get($id){
         $this->db->where($this->key_id, $id);
@@ -45,7 +44,7 @@ class Recipe extends CI_Model {
     }
 
     /**
-     * get list of goods
+     * get list of 
      */
     function getlist(){
         $query = $this->db->get($this->table);

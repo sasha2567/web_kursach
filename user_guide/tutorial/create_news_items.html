@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Create news items &mdash; CodeIgniter 3.0.0 documentation</title>
+  <title>Create news items &mdash; CodeIgniter 3.0.1 documentation</title>
   
 
   
@@ -26,11 +26,11 @@
 
   
   
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
   
 
   
-    <link rel="top" title="CodeIgniter 3.0.0 documentation" href="../index.html"/>
+    <link rel="top" title="CodeIgniter 3.0.1 documentation" href="../index.html"/>
         <link rel="up" title="Tutorial" href="index.html"/>
         <link rel="next" title="Conclusion" href="conclusion.html"/>
         <link rel="prev" title="News section" href="news_section.html"/> 
@@ -263,11 +263,11 @@ input the information to be stored. This means you&#8217;ll be needing a form
 with two fields, one for the title and one for the text. You&#8217;ll derive
 the slug from our title in the model. Create the new view at
 application/views/news/create.php.</p>
-<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nv">$title</span> <span class="cp">?&gt;</span><span class="nt">&lt;/h2&gt;</span>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nv">$title</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="nt">&lt;/h2&gt;</span>
 
 <span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">validation_errors</span><span class="p">();</span> <span class="cp">?&gt;</span>
 
-<span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">form_open</span><span class="p">(</span><span class="s1">&#39;news/create&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">form_open</span><span class="p">(</span><span class="s1">&#39;news/create&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
 
     <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;</span>Title<span class="nt">&lt;/label&gt;</span>
     <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;input&quot;</span> <span class="na">name=</span><span class="s">&quot;title&quot;</span> <span class="nt">/&gt;&lt;br</span> <span class="nt">/&gt;</span>
@@ -406,7 +406,7 @@ Add some news and check out the different pages you made.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014 - 2015, British Columbia Institute of Technology.
-      Last updated on Mar 30, 2015.
+      Last updated on Aug 07, 2015.
     </p>
   </div>
 
@@ -427,7 +427,7 @@ Add some news and check out the different pages you made.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'3.0.0',
+            VERSION:'3.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false

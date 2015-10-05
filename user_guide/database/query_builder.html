@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Query Builder Class &mdash; CodeIgniter 3.0.0 documentation</title>
+  <title>Query Builder Class &mdash; CodeIgniter 3.0.1 documentation</title>
   
 
   
@@ -26,11 +26,11 @@
 
   
   
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
   
 
   
-    <link rel="top" title="CodeIgniter 3.0.0 documentation" href="../index.html"/>
+    <link rel="top" title="CodeIgniter 3.0.1 documentation" href="../index.html"/>
         <link rel="up" title="Database Reference" href="index.html"/>
         <link rel="next" title="Transactions" href="transactions.html"/>
         <link rel="prev" title="Query Helper Methods" href="helpers.html"/> 
@@ -826,18 +826,18 @@ object.</p>
 <span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get_compiled_insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$sql</span><span class="p">;</span>
 
-<span class="c1">// Produces string: INSERT INTO mytable (title, name, date) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
+<span class="c1">// Produces string: INSERT INTO mytable (`title`, `name`, `date`) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
 </pre></div>
 </div>
 <p>The second parameter enables you to set whether or not the query builder query
 will be reset (by default it will be&#8211;just like $this-&gt;db-&gt;insert()):</p>
 <div class="highlight-ci"><div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;My Title&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get_compiled_insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
 
-<span class="c1">// Produces string: INSERT INTO mytable (title) VALUES (&#39;My Title&#39;)</span>
+<span class="c1">// Produces string: INSERT INTO mytable (`title`) VALUES (&#39;My Title&#39;)</span>
 
 <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="s1">&#39;My Content&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get_compiled_insert</span><span class="p">();</span>
 
-<span class="c1">// Produces string: INSERT INTO mytable (title, content) VALUES (&#39;My Title&#39;, &#39;My Content&#39;)</span>
+<span class="c1">// Produces string: INSERT INTO mytable (`title`, `content`) VALUES (&#39;My Title&#39;, &#39;My Content&#39;)</span>
 </pre></div>
 </div>
 <p>The key thing to notice in the above example is that the second query did not
@@ -908,7 +908,7 @@ automatically escaped, just like with <tt class="docutils literal"><span class="
 <p><strong>It can be used instead of passing a data array directly to the insert
 or update functions:</strong></p>
 <div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nv">$name</span><span class="p">);</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>  <span class="c1">// Produces: INSERT INTO mytable (name) VALUES (&#39;{$name}&#39;)</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>  <span class="c1">// Produces: INSERT INTO mytable (`name`) VALUES (&#39;{$name}&#39;)</span>
 </pre></div>
 </div>
 <p>If you use multiple function called they will be assembled properly
@@ -919,14 +919,17 @@ based on whether you are doing an insert or an update:</p>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><strong>set()</strong> will also accept an optional third parameter ($escape), that
+<p><strong>set()</strong> will also accept an optional third parameter (<tt class="docutils literal"><span class="pre">$escape</span></tt>), that
 will prevent data from being escaped if set to FALSE. To illustrate the
-difference, here is set() used both with and without the escape
+difference, here is <tt class="docutils literal"><span class="pre">set()</span></tt> used both with and without the escape
 parameter.</p>
 <div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;field&#39;</span><span class="p">,</span> <span class="s1">&#39;field+1&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span> <span class="c1">// gives INSERT INTO mytable (field) VALUES (field+1)</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span> <span class="c1">// gives UPDATE mytable SET field = field+1 WHERE id = 2</span>
+
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;field&#39;</span><span class="p">,</span> <span class="s1">&#39;field+1&#39;</span><span class="p">);</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span> <span class="c1">// gives INSERT INTO mytable (field) VALUES (&#39;field+1&#39;)</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span> <span class="c1">// gives UPDATE `mytable` SET `field` = &#39;field+1&#39; WHERE `id` = 2</span>
 </pre></div>
 </div>
 <p>You can also pass an associative array to this function:</p>
@@ -966,7 +969,11 @@ is an example using an array:</p>
 
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
-<span class="c1">// Produces: // UPDATE mytable  // SET title = &#39;{$title}&#39;, name = &#39;{$name}&#39;, date = &#39;{$date}&#39; // WHERE id = $id</span>
+<span class="c1">// Produces:</span>
+<span class="c1">//</span>
+<span class="c1">//      UPDATE mytable</span>
+<span class="c1">//      SET title = &#39;{$title}&#39;, name = &#39;{$name}&#39;, date = &#39;{$date}&#39;</span>
+<span class="c1">//      WHERE id = $id</span>
 </pre></div>
 </div>
 <p>Or you can supply an object:</p>
@@ -981,7 +988,11 @@ is an example using an array:</p>
 <span class="nv">$object</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Myclass</span><span class="p">;</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="nv">$object</span><span class="p">);</span>
-<span class="c1">// Produces: // UPDATE mytable  // SET title = &#39;{$title}&#39;, name = &#39;{$name}&#39;, date = &#39;{$date}&#39; // WHERE id = $id</span>
+<span class="c1">// Produces:</span>
+<span class="c1">//</span>
+<span class="c1">// UPDATE `mytable`</span>
+<span class="c1">// SET `title` = &#39;{$title}&#39;, `name` = &#39;{$name}&#39;, `date` = &#39;{$date}&#39;</span>
+<span class="c1">// WHERE id = `$id`</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1593,7 +1604,7 @@ a DISTINCT clause to the SELECT portion of the query.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>$key</strong> (<em>mixed</em>) &#8211; Name of field to compare, or associative array</li>
 <li><strong>$value</strong> (<em>mixed</em>) &#8211; If a single key, compared to this value</li>
-<li><strong>$escape</strong> (<em>boolean</em>) &#8211; Whether to escape values and identifiers</li>
+<li><strong>$escape</strong> (<em>bool</em>) &#8211; Whether to escape values and identifiers</li>
 </ul>
 </td>
 </tr>
@@ -1619,7 +1630,7 @@ Separates multiple calls with &#8216;AND&#8217;.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>$key</strong> (<em>mixed</em>) &#8211; Name of field to compare, or associative array</li>
 <li><strong>$value</strong> (<em>mixed</em>) &#8211; If a single key, compared to this value</li>
-<li><strong>$escape</strong> (<em>boolean</em>) &#8211; Whether to escape values and identifiers</li>
+<li><strong>$escape</strong> (<em>bool</em>) &#8211; Whether to escape values and identifiers</li>
 </ul>
 </td>
 </tr>
@@ -1645,7 +1656,7 @@ Separates multiple calls with &#8216;OR&#8217;.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>$key</strong> (<em>string</em>) &#8211; The field to search</li>
 <li><strong>$values</strong> (<em>array</em>) &#8211; The values searched on</li>
-<li><strong>$escape</strong> (<em>boolean</em>) &#8211; Whether to escape identifiers</li>
+<li><strong>$escape</strong> (<em>bool</em>) &#8211; Whether to escape values and identifiers</li>
 </ul>
 </td>
 </tr>
@@ -1671,7 +1682,7 @@ joined with &#8216;OR&#8217; if appropriate.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>$key</strong> (<em>string</em>) &#8211; The field to search</li>
 <li><strong>$values</strong> (<em>array</em>) &#8211; The values searched on</li>
-<li><strong>$escape</strong> (<em>boolean</em>) &#8211; Whether to escape identifiers</li>
+<li><strong>$escape</strong> (<em>bool</em>) &#8211; Whether to escape values and identifiers</li>
 </ul>
 </td>
 </tr>
@@ -1697,7 +1708,7 @@ joined with &#8216;OR&#8217; if appropriate.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>$key</strong> (<em>string</em>) &#8211; Name of field to examine</li>
 <li><strong>$values</strong> (<em>array</em>) &#8211; Array of target values</li>
-<li><strong>$escape</strong> (<em>boolean</em>) &#8211; Whether to escape identifiers</li>
+<li><strong>$escape</strong> (<em>bool</em>) &#8211; Whether to escape values and identifiers</li>
 </ul>
 </td>
 </tr>
@@ -1723,7 +1734,7 @@ joined with &#8216;AND&#8217; if appropriate.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>$key</strong> (<em>string</em>) &#8211; Name of field to examine</li>
 <li><strong>$values</strong> (<em>array</em>) &#8211; Array of target values</li>
-<li><strong>$escape</strong> (<em>boolean</em>) &#8211; Whether to escape identifiers</li>
+<li><strong>$escape</strong> (<em>bool</em>) &#8211; Whether to escape values and identifiers</li>
 </ul>
 </td>
 </tr>
@@ -2466,7 +2477,7 @@ a DELETE statement will be used instead.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014 - 2015, British Columbia Institute of Technology.
-      Last updated on Mar 30, 2015.
+      Last updated on Aug 07, 2015.
     </p>
   </div>
 
@@ -2487,7 +2498,7 @@ a DELETE statement will be used instead.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'3.0.0',
+            VERSION:'3.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false

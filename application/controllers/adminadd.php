@@ -6,19 +6,20 @@ class Adminadd extends CI_Controller {
 	public function index()
 	{
 		$this->load->helper('form');
-		$this->load->view('admin/add');
+		$this->load->helper('url');
+		$this->load->view('admin/addrecipe');
 	}
 
 	public function add()
 	{
-		if(isset($_POST))
+		if(isset($_POST) && isset($_POST['recipe_add_btn']))
 		{
 			$description = $_POST['recipe_description'];
-			$ingridients = $_POST['recipe_ingridients'];
+			$ingredients = $_POST['recipe_ingredients'];
 			$recipe = $_POST['recipe_recipe'];
 			$data = array(
 	            'description' => $description,
-	            'ingridients' => $ingridients,
+	            'ingredients' => $ingredients,
 	            'recipe' => $recipe
 	        );
 
