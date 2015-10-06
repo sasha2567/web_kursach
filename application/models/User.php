@@ -4,6 +4,7 @@ class User extends CI_Model {
     
     var $table = 'user';
     var $key_id = 'user_id';
+    var $uname = 'username';
 
     function __construct(){
         parent::__construct();
@@ -39,6 +40,17 @@ class User extends CI_Model {
      */
     function get($id){
         $this->db->where($this->key_id, $id);
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
+
+
+    /**
+     * get info about good
+     */
+    function getUser($username)
+    {
+        $this->db->where($this->uname, $username);
         $query = $this->db->get($this->table);
         return $query->result_array();
     }
