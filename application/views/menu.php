@@ -17,26 +17,27 @@
 		</td>
 		<td class="c0" width="90%"> 
 			 <table style="height:130px;" width="100%">
-				<tbody><tr>
+				<tr>
 					<td class="c1" colspan="2"> 
 						<div id="mainmenu_c1" style="position:relative;height:100px;text-align:left;">
 							<table style="position:absolute;z-index:2;width:100%;height:100px;">
-								<tbody><tr>
+								<tr>
 									<td>
 										<table style="width:100%;height:100px;">
-											<tbody><tr>
+											<tr>
 												<td style="text-align:center;vertical-align:middle;" width="100%">
-													<a href="/adminlist/" class="menulink underline " style="font-size:180%;">Рецепты</a> 
-													<a href="/adminlist/new/" class="menulink underline " style="font-size:90%;">Новые&nbsp;рецепты</a> 
-													<a href="/adminlist/feast/" class="menulink underline " style="font-size:100%;">На&nbsp;праздник</a> 
-													<a href="/adminlist/daily/" class="menulink underline " style="font-size:130%;">На&nbsp;каждый&nbsp;день</a> 
+													<a href="/recipe/" class="menulink underline " style="font-size:180%;">Рецепты</a> 
+													<a href="/recipe/new" class="menulink underline " style="font-size:90%;">Новые&nbsp;рецепты</a> 
+													<a href="/recipe/feast" class="menulink underline " style="font-size:100%;">На&nbsp;праздник</a> 
+													<a href="/recipe/daily" class="menulink underline " style="font-size:130%;">На&nbsp;каждый&nbsp;день</a> 
 													<a href="/forum/" class="menulink underline " style="font-size:110%;">Форум</a> 
-													<a href="/master/" class="menulink underline " style="font-size:140%;">Мастер-класс</a> 											</td>
+													<a href="/master/" class="menulink underline " style="font-size:140%;">Мастер-класс</a> 
+												</td>
 											</tr>
-										</tbody></table>
+										</table>
 									</td>
 								</tr>
-							</tbody></table>
+							</table>
 							<i class="align_lt lt_c1"><i></i></i>
 							<i class="align_rb rb_c1"><i></i></i>
 						</div>
@@ -64,20 +65,19 @@
 						</div>
 					</td>
 				</tr>
-			</tbody></table>
+			</table>
 		</td>
 		<td class="c4" width="126px">   
 			<div style="position:relative;height:130px;">
 				<i class="align_rt rt_c4"><i></i></i>
 				<table style="width:126px;height:130px;">
-					<tbody><tr>
+					<tr>
 						<td style="text-align:center;vertical-align:top;">
-									
-																		<div><a href="/recipes/recipeadd.php"><img src="http://img1.russianfood.com/images/recipes/recipe_add_btn_6.gif" alt="" border="0" height="90" width="98"></a></div>
-						<div style="margin-top: -5px;"><a href="/adminadd" class="addrecipe_text">Добавить<br>рецепт</a></div>
+							<div><a href="/recipes/recipeadd.php"><img src="http://img1.russianfood.com/images/recipes/recipe_add_btn_6.gif" alt="" border="0" height="90" width="98"></a></div>
+							<div style="margin-top: -5px;"><a href="/adminadd" class="addrecipe_text">Добавить<br>рецепт</a></div>
 						</td>			
 					</tr>
-				</tbody></table>
+				</table>
 				<i class="align_rb rb_c4"><i></i></i>
 			</div>
 		</td>

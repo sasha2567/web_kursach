@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Главная страница администратора</title>
+	<title>Панель администрирования сайта http://justcooking.16mb.com|Главная страница администратора</title>
 </head>
 <body>
-Панель администрирования сайта http://justcooking.16mb.com
+
 <?php
 require_once 'menu.php';
 ?>
@@ -13,7 +13,16 @@ require_once 'menu.php';
 <br />
 <ul>
 <?php foreach ($recipes as $item):?>
-        <li><?php echo anchor('adminredact/show/'.$item['recipe_id'], '\''.$item['description'].':'.$item['ingredients'].':'.$item['recipe'].'\'');?></li>
+        <li>
+
+        <a href="/adminredact/show/<?=$item['recipe_id']?>">
+        	<img src="/../img/upload/<?=$item['image']?>" />
+        </a>
+        &nbsp;
+        <a href="/adminredact/show/<?=$item['recipe_id']?>">
+        	<?=$item['description']?>
+        </a>
+        </li>
 <?php endforeach; ?>
 </ul>
 </body>

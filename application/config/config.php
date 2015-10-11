@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://justcooking.16mb.com/index.php/';
-
+$config['base_image_path'] = 'http://justcooking.16mb.com/application/views/img';
 /*
 |--------------------------------------------------------------------------
 | Index File

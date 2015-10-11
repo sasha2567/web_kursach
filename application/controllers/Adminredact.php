@@ -1,22 +1,52 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+class Coments {
+	public $coment = null;
+	public $user = null;
+
+	function __construct($c,$u){
+        $this->coment = $c;
+        $this->user = $u;
+    }
+}
+
 class Adminredact extends CI_Controller {
 
 	public function show($id)
 	{
 		$this->load->model('recipe');
-        $data = $this->recipe->get($id);
-        foreach ($data as $item) {
-        	$data = $item;
+        $item = $this->recipe->get($id);
+        foreach ($item as $var) {
+        	$item = $var;
         	break;
         }
+
+		$this->load->model('coment');
+		$coment = $this->coment->getrecipe($id);
+		
+		$this->load->model('user');
+		$users = array();
+		$coments = array();
+		foreach ($coment as $value) {
+			$temp = $this->user->get($value['user_id']);
+        	foreach ($temp as $var) {
+	        	$temp = $var;
+	        	break;
+        	}
+        	$coments[] = new Coments($value,$temp);
+		}
+
+		$data = array(
+			'item' => $item,
+			'coments' => $coments
+		);
+
 		if($data != null)
 		{
 			$this->load->helper('url');
 			$this->load->view('admin/showrecipeforredact',$data);
 		}
-		
 	}
 
 	public function redact($id)

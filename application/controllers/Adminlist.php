@@ -7,8 +7,10 @@ class Adminlist extends CI_Controller {
 	{
 		$this->load->model('recipe');
         $recipes = $this->recipe->getlist();
+		$image_path = 'http://justcooking.16mb.com/application/views/img';
 		$data = array(
-			'recipes' => $recipes 
+			'recipes' => $recipes,
+			'image_path' => $image_path
 			);
 		$this->load->helper('url');
 		$this->load->view('admin/showrecipe',$data);
