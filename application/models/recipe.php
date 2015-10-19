@@ -4,6 +4,7 @@ class Recipe extends CI_Model {
     
     var $table = 'recipe';
     var $key_id = 'recipe_id';
+    var $section_id = 'section_id';
 
     function __construct(){
         parent::__construct();
@@ -39,6 +40,12 @@ class Recipe extends CI_Model {
      */
     function get($id){
         $this->db->where($this->key_id, $id);
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
+
+    function getsection($id){
+        $this->db->where($this->section_id, $id);
         $query = $this->db->get($this->table);
         return $query->result_array();
     }
