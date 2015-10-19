@@ -11,8 +11,8 @@ require_once 'menu.php';
 Все 
 <?php
 $attributes = array(
-    'class' => 'recipe_redact', 
-    'id' => 'form_redact_recipe'
+	'class' => 'recipe_redact', 
+	'id' => 'form_redact_recipe'
 );
 echo form_open('adminredact/redact/'.$item['recipe_id'], $attributes); 
 ?>
@@ -41,8 +41,8 @@ foreach ($coments as $item) {
 <a href="/adminuser/give/<?=$item->user['user_id']?>">Разрешить коментировать</a>
 <?php
 $attributes = array(
-    'class' => 'redact_coment', 
-    'id' => 'form_redact_coment'
+	'class' => 'redact_coment', 
+	'id' => 'form_redact_coment'
 );
 echo "<br />";
 echo form_open('adminredact/redactcoment/'.$item->user['user_id'], $attributes);?>

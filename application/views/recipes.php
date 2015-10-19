@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Панель администрирования сайта http://justcooking.16mb.com|Главная страница администратора</title>
+	<title>Главная страница</title>
 </head>
 <body>
 
@@ -14,7 +14,7 @@ require_once 'menu.php';
 <ul>
 <?php foreach ($recipes as $item):?>
 	<li>
-		<a href="/adminredact/show/<?=$item['recipe_id']?>">
+		<a href="/users//show/<?=$item['recipe_id']?>">
 			<img src="/../img/upload/<?=$item['image']?>" />
 		</a>
 		&nbsp;

@@ -8,12 +8,12 @@ class Adminuser extends CI_Controller {
 		$this->load->model('user');
 		$item = $this->user->get($id);
 		foreach ($item as $var) {
-        	$item = $var;
-        	break;
-        }
-        $item['is_comented'] = 0;
+			$item = $var;
+			break;
+		}
+		$item['is_comented'] = 0;
 		$item = $this->user->edit($id,$item);
-		redirect("adminlist");
+		goback();
 	}
 
 	public function give($id)
@@ -21,13 +21,11 @@ class Adminuser extends CI_Controller {
 		$this->load->model('user');
 		$item = $this->user->get($id);
 		foreach ($item as $var) {
-        	$item = $var;
-        	break;
-        }
-        $item['is_comented'] = 1;
+			$item = $var;
+			break;
+		}
+		$item['is_comented'] = 1;
 		$item = $this->user->edit($id,$item);
 		redirect("adminlist");
 	}
-
-
 }

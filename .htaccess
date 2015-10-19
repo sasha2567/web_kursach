@@ -3,4 +3,4 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L]
-RewriteCond $1 !^(index\.php|css|js|files|application/views/img/|robots\.txt|install|favicon\.ico)
+RewriteCond $1 !^(index\.php|highslide|images|robots\.txt|install|favicon\.ico|templatemo_style\.css)
