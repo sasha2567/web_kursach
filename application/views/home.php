@@ -1,7 +1,3 @@
-<?php 
-	require_once 'menu.php';
-?>
-
             <div id="templatemo_right_col">
                  
             	<div class="templatemo_post_area">
@@ -17,16 +13,5 @@
 						<a href="/users/recipe/show/<?=$item['recipe_id']?>">
 							<?=$item['description']?>
 						</a>
-						</li>
+					</li>
 				<?php endforeach; ?>
-            </div><!-- End Of Right -->
-            <div class="cleaner"></div>
-            
-            <div id="templatemo_footer">Copyright © 2024 <a href="#">Your Company Name</a> | Designed by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a></div>
-            
-            <div class="cleaner"></div>
-        </div><!-- End Of Content Area -->    
-    </div><!-- End Of Container -->
-<!--  Free CSS Templates by TemplateMo.com  -->
-</body>
-</html>

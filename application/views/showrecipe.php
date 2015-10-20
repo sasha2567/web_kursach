@@ -1,6 +1,3 @@
-<?php 
-	require_once 'menu.php';
-?>
             <div id="templatemo_right_col">
                  
             	<div class="templatemo_gallery">
@@ -29,22 +26,10 @@
 						'id' => 'form_add_coment'
 					);
 					echo "<br />";
-					echo form_open('/users/recipe/show/addcoment/'.$item->user['user_id'], $attributes);?>
+					echo form_open('/users/recipes/addcoment/'.$item->user['user_id'], $attributes);?>
 						<label>Коментарий</label>
 						<textarea rows="4" cols="80" name="coment_user"></textarea>
 						<br />
-						<input type="submit" name="add_coment_user" value="Сохранить изменения в коментарии" />
+						<input type="submit" name="add_coment_user" value="Добавить коментарий" />
 				<?php form_close();?>
                 </div>
-                
-            </div><!-- End Of Right -->
-            <div class="cleaner"></div>
-            
-            <div id="templatemo_footer">Copyright © 2024 <a href="#">Your Company Name</a> | Designed by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a></div>
-            
-            <div class="cleaner"></div>
-        </div><!-- End Of Content Area -->    
-    </div><!-- End Of Container -->
-<!--  Free CSS Templates by TemplateMo.com  -->
-</body>
-</html>

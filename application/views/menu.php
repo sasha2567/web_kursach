@@ -42,7 +42,41 @@
 </script>
 </head>
 <body>
-
+	<div id="autorise">
+		<?php
+		if(!isset($username) || $username == FALSE){
+			$attributes = array(
+			    'class' => 'user_login', 
+			    'id' => 'form_user_login'
+			);
+			echo form_open('login/logined', $attributes); 
+			?>
+			<label>Имя пользователя</label>
+			<input type="text" name="username" />
+			<br />
+			<label>Пароль</label>
+			<input type="password" name="user_password" />
+			<br />
+			<input type="submit" name="user_login_btn" value="Войти" />
+			<?php 
+			form_close();
+		}
+		else
+		{
+		?>
+			<h3>Здраствуйте: <?=$username;?></h3>
+			<?php
+			$attributes = array(
+			    'class' => 'user_login', 
+			    'id' => 'form_user_login'
+			);
+			echo form_open('login/exitlog', $attributes); 
+			?>
+			<input type="submit" name="user_login_btn" value="Выйти" />
+		<?php
+		}
+		?>
+	</div>
 	<div id="templatemo_container">
 		<div id="templatemo_header">
 			<div id="templatemo_menu">
@@ -59,15 +93,16 @@
 		<div id="templatemo_content_area">	
 			<div id="templatemo_left_col">
 				<div class="templatemo_section">
-					<h1>News &amp; Events</h1>
-						<h2>24 / DEC / 2024</h2>
-						<p>Pulvinar dui in ipsum cursus non interdum neque porta.</p>
-						<h2>22 / DEC / 2024</h2>
-						<p>Diam volutpat lobortis fau cibus, turpis mau ris faci lisis lorem.</p>
-						<h2>26 / NOV / 2024</h2>
-						<p>Sed blandit ipsum est vitae metus. Phasellus nisi erat.</p>
-						<h2>18 / NOV / 2024</h2>
-						<p>Morbi lobo rtis neque sed mau ris faci lisis phar etra int eger odio lacus.</p>
+					<h1>Последнии коментарии</h1>
+						<?php
+						foreach ($titlecoment as $value) {?>
+							<h2><?=$value->user['username'];?></h2>
+							<p><?=$value->coment['coment'];?></p>
+						<?php
+						}
+						?>
+						
+						
 				</div>
 				<div class="templatemo_section">
 					<h1>W3C Validators</h1>
