@@ -7,12 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-	<?php if($uri == "users/home") echo 'Главная страница';?>
-	<?php if($uri == "users/news") echo 'Наши новинки';?>
-	<?php if($uri == "users/feast") echo 'Праздничные блюда';?>
-	<?php if($uri == "users/daily") echo 'Ежедневные вкусняшки';?>
-	<?php if($uri == "users/master") echo 'Мастер-класс';?>
-	<?php if($uri =~ "users/recipes/show/\d+") echo 'Описание рецепта';?>
+	<?=$title;?>
 </title>
 <meta name="keywords" content="free design template, download web templates, Fruit And Juice Website, XHTML, CSS" />
 <meta name="description" content="Fruit And Juice - Free CSS Template, Free XHTML CSS Design Layout" />
@@ -81,12 +76,12 @@
 		<div id="templatemo_header">
 			<div id="templatemo_menu">
 				<ul>
-					<li><a href="<?=base_url();?>users/home" <?php if($uri == "users/home") echo 'class="current"';?>>Главная страница</a></li>
-					<li><a href="<?=base_url();?>users/news" <?php if($uri == "users/news") echo 'class="current"';?>>Новые&nbsp;рецепты</a></li>
-					<li><a href="<?=base_url();?>users/feast" <?php if($uri == "users/feast") echo 'class="current"';?>>На&nbsp;праздник</a></li>
-					<li><a href="<?=base_url();?>users/daily" <?php if($uri == "users/daily") echo 'class="current"';?>>На&nbsp;каждый&nbsp;день</a></li>
-					<li><a href="<?=base_url();?>users/forum" <?php if($uri == "users/forum") echo 'class="current"';?>>Форум</a></li>
-					<li><a href="<?=base_url();?>users/master" <?php if($uri == "users/master") echo 'class="current"';?>>Мастер-класс</a></li>
+					<li><a href="<?=base_url();?>users/home" <?php if($uri == 'users/home') echo 'class="current"';?>>Главная страница</a></li>
+					<li><a href="<?=base_url();?>users/news" <?php if($uri == 'users/news') echo 'class="current"';?>>Новые&nbsp;рецепты</a></li>
+					<li><a href="<?=base_url();?>users/feast" <?php if($uri == 'users/feast') echo 'class="current"';?>>На&nbsp;праздник</a></li>
+					<li><a href="<?=base_url();?>users/daily" <?php if($uri == 'users/daily') echo 'class="current"';?>>На&nbsp;каждый&nbsp;день</a></li>
+					<li><a href="<?=base_url();?>users/forum" <?php if($uri == 'users/forum') echo 'class="current"';?>>Форум</a></li>
+					<li><a href="<?=base_url();?>users/master" <?php if($uri == 'users/master') echo 'class="current"';?>>Мастер-класс</a></li>
 				</ul>
 			</div>
 		</div>
@@ -95,10 +90,12 @@
 				<div class="templatemo_section">
 					<h1>Последнии коментарии</h1>
 						<?php
-						foreach ($titlecoment as $value) {?>
-							<h2><?=$value->user['username'];?></h2>
-							<p><?=$value->coment['coment'];?></p>
+						if(isset($titlecoment)){
+							foreach ($titlecoment as $value) {?>
+								<h2><?=$value->user['username'];?></h2>
+								<p><?=$value->coment['coment'];?></p>
 						<?php
+							}
 						}
 						?>
 						

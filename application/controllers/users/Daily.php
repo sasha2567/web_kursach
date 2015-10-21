@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Coments {
@@ -43,9 +43,10 @@ class Daily extends CI_Controller {
 		$recipes = $this->recipe->getsection(2);
 		$data = array(
 			'recipes' => $recipes,
-			'titlecoment' => $titlecoment
+			'titlecoment' => $titlecoment,
+			'username' => $this->session->userdata('username'),
+			'title' => 'Ежедневные вкусняшки'
 			);
-		$data['username'] = $this->session->userdata('username');
 		$this->load->helper('url');
 		$this->load->view('menu',$data);
 		$this->load->view('home',$data);

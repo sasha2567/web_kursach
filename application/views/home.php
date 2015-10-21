@@ -6,11 +6,11 @@
 
                 <?php foreach ($recipes as $item):?>
 					<li>
-						<a href="/users/recipes/show/<?=$item['recipe_id']?>">
+						<a href="<?=base_url();?>users/recipes/show/<?=$item['recipe_id']?>">
 							<img src="<?=base_url();?>images/<?=$item['image']?>" />
 						</a>
 						&nbsp;
-						<a href="/users/recipe/show/<?=$item['recipe_id']?>">
+						<a href="<?=base_url();?>users/recipes/show/<?=$item['recipe_id']?>">
 							<?=$item['description']?>
 						</a>
 					</li>

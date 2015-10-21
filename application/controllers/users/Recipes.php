@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Coments {
@@ -62,35 +62,41 @@ class Recipes extends CI_Controller {
 		$data = array(
 			'item' => $item,
 			'coments' => $coments,
-			'titlecoment' => $titlecoment
+			'titlecoment' => $titlecoment,
+			'username' => $this->session->userdata('username'),
+			'title' => 'Описание рецепта'
 		);
-		$data['username'] = $this->session->userdata('username');
 
 		if($data != null)
 		{
 			$this->load->helper('url');
 			$this->load->view('menu',$data);
+			//$this->load->helper('form');
+			$this->load->helper('html');
 			$this->load->view('showrecipe',$data);
 			$this->load->view('footer');
 		}
 	}
 
-	public function addcoment($id,$id_item)
+	public function addcoment($id)
 	{
+		die('qqq');
 		if(isset($_POST) && isset($_POST['add_coment_user']))
 		{
-			$description = $_POST['coment_user'];
-			$ingredients = $_POST['recipe_ingredients'];
-			$recipe = $_POST['recipe_recipe'];
+			die('www');
+			$coment = $_POST['coment_user'];
+			$user_id = $this->session->userdata('user_id');
+			if($user_id = false)
+				$user_id = 0;
 			$data = array(
-	            'description' => $description,
-	            'ingredients' => $ingredients,
-	            'recipe' => $recipe
+	            'coment' => $coment,
+	            'user_id' => $user_id,
+	            'recipe_id' => $id
 	        );
 
-	        $this->load->model('recipe');
-	        $recipes = $this->recipe->add($data);
-	        redirect('/users/recipes/show/'.$id_item);
+	        $this->load->model('coment');
+	        $this->coment->add($data);
+	        redirect('users/recipes/show/'.$id);
 		}
 	}
 }
