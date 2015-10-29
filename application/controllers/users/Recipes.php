@@ -70,28 +70,27 @@ class Recipes extends CI_Controller {
 		if($data != null)
 		{
 			$this->load->helper('url');
-			$this->load->view('menu',$data);
-			//$this->load->helper('form');
-			$this->load->helper('html');
-			$this->load->view('showrecipe',$data);
-			$this->load->view('footer');
+			$this->load->view('users/menu',$data);
+			$this->load->view('users/showrecipe',$data);
+			$this->load->view('users/footer');
 		}
 	}
 
 	public function addcoment($id)
 	{
-		die('qqq');
 		if(isset($_POST) && isset($_POST['add_coment_user']))
 		{
-			die('www');
 			$coment = $_POST['coment_user'];
-			$user_id = $this->session->userdata('user_id');
-			if($user_id = false)
+			if(false === $this->session->userdata('user_id'))
 				$user_id = 0;
+			else
+				$user_id = $this->session->userdata('user_id');
+
 			$data = array(
 	            'coment' => $coment,
 	            'user_id' => $user_id,
-	            'recipe_id' => $id
+	            'recipe_id' => $id,
+	            'datetime' => date("Y-m-d H:i:s")
 	        );
 
 	        $this->load->model('coment');

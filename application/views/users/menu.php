@@ -37,46 +37,46 @@
 </script>
 </head>
 <body>
-	<div id="autorise">
-		<?php
-		if(!isset($username) || $username == FALSE){
-			$attributes = array(
-			    'class' => 'user_login', 
-			    'id' => 'form_user_login'
-			);
-			echo form_open('login/logined', $attributes); 
-			?>
-			<label>Имя пользователя</label>
-			<input type="text" name="username" />
-			<br />
-			<label>Пароль</label>
-			<input type="password" name="user_password" />
-			<br />
-			<input type="submit" name="user_login_btn" value="Войти" />
-			<?php 
-			form_close();
-		}
-		else
-		{
-		?>
-			<h3>Здраствуйте: <?=$username;?></h3>
-			<?php
-			$attributes = array(
-			    'class' => 'user_login', 
-			    'id' => 'form_user_login'
-			);
-			echo form_open('login/exitlog', $attributes); 
-			?>
-			<input type="submit" name="user_login_btn" value="Выйти" />
-		<?php
-		}
-		?>
-	</div>
+	
 	<div id="templatemo_container">
+		<div id="autorise">
+			<?php
+			if(!isset($username) || $username === FALSE){
+				$attributes = array(
+				    'class' => 'user_login', 
+				    'id' => 'form_user_login'
+				);
+				echo form_open('login/logined', $attributes); 
+				?>
+				<label>Имя пользователя</label>
+				<input type="text" name="username" />
+				<label>Пароль</label>
+				<input type="password" name="user_password" />
+				<input type="submit" name="user_login_btn" value="Войти" />
+				<?php 
+				echo form_close();
+			}
+			else
+			{
+			?>
+				<h3>Здраствуйте: <?=$username;?></h3>
+				<?php
+				$attributes = array(
+				    'class' => 'user_login', 
+				    'id' => 'form_user_login'
+				);
+				echo form_open('login/exitlog', $attributes); 
+				?>
+				<input type="submit" name="user_login_btn" value="Выйти" />
+			<?php
+				echo form_close();
+			}
+			?>
+		</div>
 		<div id="templatemo_header">
 			<div id="templatemo_menu">
 				<ul>
-					<li><a href="<?=base_url();?>users/home" <?php if($uri == 'users/home') echo 'class="current"';?>>Главная страница</a></li>
+					<li><a href="<?=base_url();?>" <?php if($uri == '') echo 'class="current"';?>>Главная страница</a></li>
 					<li><a href="<?=base_url();?>users/news" <?php if($uri == 'users/news') echo 'class="current"';?>>Новые&nbsp;рецепты</a></li>
 					<li><a href="<?=base_url();?>users/feast" <?php if($uri == 'users/feast') echo 'class="current"';?>>На&nbsp;праздник</a></li>
 					<li><a href="<?=base_url();?>users/daily" <?php if($uri == 'users/daily') echo 'class="current"';?>>На&nbsp;каждый&nbsp;день</a></li>

@@ -1,85 +1,111 @@
-<table>
-	<tr>
-		<td style="text-align:center;vertical-align:bottom;" width="140px">
-		 	<table style="height:130px;" width="100%">
-				<tbody><tr>
-					<td class="c00">
-						<div style="position:relative;">
-							<a href="/adminhome"><img src="" alt="" style="margin:5px 20px 0 20px;" border="0" height="97" width="131"></a>
-							<i class="align_rt lt_c00"><i></i></i>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td style="vertical-align: bottom; text-align: center;"><noindex><a id="addtofav" href="javascript:window.external.AddFavorite('http://www.russianfood.com',' RussianFood.com - Русская кухня - это все, что едят!')" rel="nofollow">Добавить в избранное</a></noindex></td>
-				</tr>
-			</tbody></table>	
-		</td>
-		<td class="c0" width="90%"> 
-			 <table style="height:130px;" width="100%">
-				<tbody><tr>
-					<td class="c1" colspan="2"> 
-						<div id="mainmenu_c1" style="position:relative;height:100px;text-align:left;">
-							<table style="position:absolute;z-index:2;width:100%;height:100px;">
-								<tbody><tr>
-									<td>
-										<table style="width:100%;height:100px;">
-											<tbody><tr>
-												<td style="text-align:center;vertical-align:middle;" width="100%">
-													<a href="/adminlist/" class="menulink underline " style="font-size:180%;">Рецепты</a> 
-													<a href="/adminlist/new/" class="menulink underline " style="font-size:90%;">Новые&nbsp;рецепты</a> 
-													<a href="/adminlist/feast/" class="menulink underline " style="font-size:100%;">На&nbsp;праздник</a> 
-													<a href="/adminlist/daily/" class="menulink underline " style="font-size:130%;">На&nbsp;каждый&nbsp;день</a> 
-													<a href="/forum/" class="menulink underline " style="font-size:110%;">Форум</a> 
-													<a href="/master/" class="menulink underline " style="font-size:140%;">Мастер-класс</a> 											</td>
-											</tr>
-										</tbody></table>
-									</td>
-								</tr>
-							</tbody></table>
-							<i class="align_lt lt_c1"><i></i></i>
-							<i class="align_rb rb_c1"><i></i></i>
-						</div>
-				 	</td>
-				</tr>
-				<tr>
-					<td class="c2" width="5%">
-					<div style="position:relative;height:30px;width:84px;text-align:center;vertical-align:middle;">
-						&nbsp;
-						<i class="align_lb lb_c2"><i></i></i>
-					</div>
-					</td>
-					<td class="c3" width="95%">
-						<div style="position:relative;height:30px;">
-							<table style="position:absolute;z-index:2;width:100%;height:30px;">
-								<tbody><tr>
-									<td style="text-align:left;vertical-align:middle;">
-										<!-- строка навигации по сайту -->
-										<p class="nav"></p>
-									</td>
-								</tr>
-							</tbody></table>
-							<i class="align_rb rb_c3"><i></i></i>
-							<i class="align_lt lt_c3"><i></i></i>
-						</div>
-					</td>
-				</tr>
-			</tbody></table>
-		</td>
-		<td class="c4" width="126px">   
-			<div style="position:relative;height:130px;">
-				<i class="align_rt rt_c4"><i></i></i>
-				<table style="width:126px;height:130px;">
-					<tbody><tr>
-						<td style="text-align:center;vertical-align:top;">
-									
-																		<div><a href="/recipes/recipeadd.php"><img src="http://img1.russianfood.com/images/recipes/recipe_add_btn_6.gif" alt="" border="0" height="90" width="98"></a></div>
-						<div style="margin-top: -5px;"><a href="/adminadd" class="addrecipe_text">Добавить<br>рецепт</a></div>
-						</td>			
-					</tr>
-				</tbody></table>
-				<i class="align_rb rb_c4"><i></i></i>
+<?php
+	$uri = $_SERVER['PHP_SELF'];
+	$uri = substr($uri, 11);
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+	<?=$title;?>
+</title>
+<meta name="keywords" content="free design template, download web templates, Fruit And Juice Website, XHTML, CSS" />
+<meta name="description" content="Fruit And Juice - Free CSS Template, Free XHTML CSS Design Layout" />
+<link href="/templatemo_style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="<?=base_url();?>highslide/highslide.css" />
+<script type="text/javascript" src="<?=base_url();?>highslide/highslide-with-gallery.js"></script>
+<script type="text/javascript">
+
+	hs.graphicsDir = 'highslide/graphics/';
+	hs.align = 'center';
+	hs.transitions = ['expand', 'crossfade'];
+	hs.wrapperClassName = 'dark borderless floating-caption';
+	hs.fadeInOut = true;
+	hs.dimmingOpacity = .75;
+
+	if (hs.addSlideshow) hs.addSlideshow({
+		interval: 5000,
+		repeat: false,
+		useControls: true,
+		fixedControls: 'fit',
+		overlayOptions: {
+			opacity: .6,
+			position: 'bottom center',
+			hideOnMouseOut: true
+		}
+	});
+</script>
+</head>
+<body>
+	
+	<div id="templatemo_container">
+		<div id="autorise">
+			<?php
+			if(!isset($username) || $username == FALSE){
+				$attributes = array(
+				    'class' => 'user_login', 
+				    'id' => 'form_user_login'
+				);
+				echo form_open('login/logined', $attributes); 
+				?>
+				<label>Имя пользователя</label>
+				<input type="text" name="username" />
+				<label>Пароль</label>
+				<input type="password" name="user_password" />
+				<input type="submit" name="user_login_btn" value="Войти" />
+				<?php 
+				echo form_close();
+			}
+			else
+			{
+			?>
+				<h3>Здраствуйте: <?=$username;?></h3>
+				<?php
+				$attributes = array(
+				    'class' => 'user_login', 
+				    'id' => 'form_user_login'
+				);
+				echo form_open('login/exitlog', $attributes); 
+				?>
+				<input type="submit" name="user_login_btn" value="Выйти" />
+			<?php
+				echo form_close();
+			}
+			?>
+		</div>
+		<div id="templatemo_header">
+			<div id="templatemo_menu">
+				<ul>
+					<li><a href="<?=base_url();?>" <?php if($uri == '') echo 'class="current"';?>>Главная страница</a></li>
+					<li><a href="<?=base_url();?>users/news" <?php if($uri == 'users/news') echo 'class="current"';?>>Новые&nbsp;рецепты</a></li>
+					<li><a href="<?=base_url();?>users/feast" <?php if($uri == 'users/feast') echo 'class="current"';?>>На&nbsp;праздник</a></li>
+					<li><a href="<?=base_url();?>users/daily" <?php if($uri == 'users/daily') echo 'class="current"';?>>На&nbsp;каждый&nbsp;день</a></li>
+					<li><a href="<?=base_url();?>users/forum" <?php if($uri == 'users/forum') echo 'class="current"';?>>Форум</a></li>
+					<li><a href="<?=base_url();?>users/master" <?php if($uri == 'users/master') echo 'class="current"';?>>Мастер-класс</a></li>
+				</ul>
 			</div>
-		</td>
-	</tr>
-</table>
+		</div>
+		<div id="templatemo_content_area">	
+			<div id="templatemo_left_col">
+				<div class="templatemo_section">
+					<h1>Последнии коментарии</h1>
+						<?php
+						if(isset($titlecoment)){
+							foreach ($titlecoment as $value) {?>
+								<h2><?=$value->user['username'];?></h2>
+								<p><?=$value->coment['coment'];?></p>
+						<?php
+							}
+						}
+						?>
+						
+						
+				</div>
+				<div class="templatemo_section">
+					<h1>W3C Validators</h1>
+					<p>
+						<a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" width="88" height="31" border="0" /></a>
+						<a href="http://jigsaw.w3.org/css-validator/check/referer"><img style="border:0;width:88px;height:31px" alt="Valid CSS" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" /></a>
+					</p> 
+				</div>
+			</div><!-- End Of Left -->

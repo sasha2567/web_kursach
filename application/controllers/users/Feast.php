@@ -47,8 +47,8 @@ class Feast extends CI_Controller {
 			'title' => 'Праздничные блюда'
 			);
 		$this->load->helper('url');
-		$this->load->view('menu',$data);
-		$this->load->view('home',$data);
-		$this->load->view('footer');
+		$this->load->view('users/menu',$data);
+		$this->load->view('users/home',$data);
+		$this->load->view('users/footer');
 	}
 }

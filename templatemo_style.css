@@ -24,6 +24,10 @@ a:active, a:hover { color: #f26521; text-decoration: underline; }
 	margin: auto;
 }
 
+#autorise {
+	text-align: right;
+}
+
 #templatemo_header {
 	width: 755px;
 	height: 395px;

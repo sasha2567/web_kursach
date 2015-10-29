@@ -16,8 +16,9 @@ class Login extends CI_Controller {
 				$user = $item;
 				break;
 			}
-			if($user['password'] == $user_password && $username == 'admin')
-				redirect('adminhome');
+			if($user['password'] == $user_password && $username == 'admin'){
+				redirect('admin/adminhome');
+			}
 			if($user['password'] == $user_password && $username == $user['username'])
 			{
 				$newdata = array(
@@ -26,11 +27,12 @@ class Login extends CI_Controller {
 				   'user_id' => $user['user_id']
 				);
 				$this->session->set_userdata($newdata);
-				redirect('users/home');
+				redirect('home');
 			}
 		}
-		else
-			redirect('users/home');
+		else{
+			redirect('home');
+		}
 	}
 
 	public function exitlog()
@@ -38,6 +40,6 @@ class Login extends CI_Controller {
 		$this->session->unset_userdata('username');
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('user_id');
-		redirect('users/home');
+		redirect('home');
 	}
 }

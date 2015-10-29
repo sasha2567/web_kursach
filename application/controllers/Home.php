@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Coments {
@@ -37,18 +37,14 @@ class Home extends CI_Controller {
 	public function index($id = 1)
 	{
 		$titlecoment = $this->getTitleComent();
-		$this->load->model('recipe');
-		$this->db->limit (10, ($id - 1) * 10);
-		$recipes = $this->recipe->getlist();
 		$data = array(
-			'recipes' => $recipes,
 			'titlecoment' => $titlecoment,
 			'username' => $this->session->userdata('username'),
 			'title' => 'Главная страница'
 			);
 		$this->load->helper('url');
-		$this->load->view('menu',$data);
-		$this->load->view('home',$data);
-		$this->load->view('footer');
+		$this->load->view('users/menu',$data);
+		$this->load->view('home');
+		$this->load->view('users/footer');
 	}
 }
