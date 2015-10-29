@@ -1,12 +1,22 @@
             <div id="templatemo_right_col">
                  
             	<div class="templatemo_gallery">
+                    <div clacc="image">
+                        <img src="<?=base_url();?>images/<?=$item['image']?>" />
+                    </div>
+
                     <div class="templatemo_title">
-                     	<?=$item['description']?>                        
+                        <?=$item['description']?>                        
                	  	</div>
                 </div>
             	<div class="templatemo_post_area">
-            		<h1><?=$item['ingredients']?></h1>
+            		<?php
+                    foreach ($products as $value) {
+                    ?>
+                    <h1><?=$value['product']?>:<?=$value['count']?></h1>
+                    <?php 
+                    }
+                    ?>
             	</div>
             	<?=$item['recipe']?>
             	<div class="templatemo_section">
@@ -29,13 +39,15 @@
                             'class' => 'user_login', 
                             'id' => 'form_add_coment'
                         );
-                        echo form_open('users/recipes/addcoment/<?=$item["recipe_id"]?>', $attributes); 
+                        echo form_open('users/recipes/addcoment/'.$item['recipe_id'], $attributes); 
                 ?>
                             <label>Коментарий</label>
                             <textarea rows="4" cols="68" name="coment_user"></textarea>
                             <br />
                             <input type="submit" name="add_coment_user" value="Добавить коментарий" />
-                        </div>
+                        
                 <?php 
                         echo form_close();
                     }
+                ?>
+                        </div>

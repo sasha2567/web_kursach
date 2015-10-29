@@ -3,8 +3,11 @@
 class Recipe extends CI_Model {
     
     var $table = 'recipe';
+    var $product_table = 'products';
+    var $recipe_product_table = 'recipe_product';
     var $key_id = 'recipe_id';
     var $section_id = 'section_id';
+    var $product_id = 'product_id';
 
     function __construct(){
         parent::__construct();
@@ -23,8 +26,8 @@ class Recipe extends CI_Model {
      * edit data
      */
      function edit($id, $data){
-         $this->db->where($this->key_id, $id);
-         $this->db->update($this->table, $data);
+        $this->db->where($this->key_id, $id);
+        $this->db->update($this->table, $data);
      }
 
     /**
@@ -48,6 +51,28 @@ class Recipe extends CI_Model {
         $this->db->where($this->section_id, $id);
         $query = $this->db->get($this->table);
         return $query->result_array();
+    }
+
+    function getproduct($id){
+        $this->db->where($this->key_id, $id);
+        $query = $this->db->get($this->recipe_product_table);
+        $temp = $query->result_array();
+        $result = array();
+        foreach ($temp as $value) {
+            $this->db->where($this->product_id, $value[$this->product_id]);
+            $query = $this->db->get($this->product_table);
+            $tmp = $query->result_array();
+            foreach ($tmp as $var) {
+                $tmp = $var;
+                break;
+            }
+            $tmp = $tmp['description'];
+            $result[] = array(
+                'product' => $tmp,
+                'count' => $value['count']
+            );
+        }
+        return $result;
     }
 
     /**

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Coments {
@@ -43,6 +43,7 @@ class Recipes extends CI_Controller {
         	$item = $var;
         	break;
         }
+        $products = $this->recipe->getproduct($id);
 
 		$this->load->model('coment');
 		$coment = $this->coment->getrecipe($id);
@@ -58,9 +59,11 @@ class Recipes extends CI_Controller {
         	}
         	$coments[] = new Coments($value,$temp);
 		}
-
+		$this->load->helper('html');
+		$this->load->helper('url');
 		$data = array(
 			'item' => $item,
+			'products' => $products,
 			'coments' => $coments,
 			'titlecoment' => $titlecoment,
 			'username' => $this->session->userdata('username'),
@@ -81,6 +84,9 @@ class Recipes extends CI_Controller {
 		if(isset($_POST) && isset($_POST['add_coment_user']))
 		{
 			$coment = $_POST['coment_user'];
+			//$coment = iconv("UTF-8", "ISO-8859-1//IGNORE", $coment);
+			$coment = htmlspecialchars($coment, NULL, 'ISO-8859-1');
+			//die($coment.'*');
 			if(false === $this->session->userdata('user_id'))
 				$user_id = 0;
 			else

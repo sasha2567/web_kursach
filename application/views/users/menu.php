@@ -80,7 +80,7 @@
 					<li><a href="<?=base_url();?>users/news" <?php if($uri == 'users/news') echo 'class="current"';?>>Новые&nbsp;рецепты</a></li>
 					<li><a href="<?=base_url();?>users/feast" <?php if($uri == 'users/feast') echo 'class="current"';?>>На&nbsp;праздник</a></li>
 					<li><a href="<?=base_url();?>users/daily" <?php if($uri == 'users/daily') echo 'class="current"';?>>На&nbsp;каждый&nbsp;день</a></li>
-					<li><a href="<?=base_url();?>users/forum" <?php if($uri == 'users/forum') echo 'class="current"';?>>Форум</a></li>
+					<li><a href="<?=base_url();?>forum" <?php if($uri == 'forum') echo 'class="current"';?>>Форум</a></li>
 					<li><a href="<?=base_url();?>users/master" <?php if($uri == 'users/master') echo 'class="current"';?>>Мастер-класс</a></li>
 				</ul>
 			</div>

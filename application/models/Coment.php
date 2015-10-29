@@ -15,8 +15,6 @@ class Coment extends CI_Model {
      * add data
      */
     function add($data){
-        $id = count($this->getlist()) + 1;
-        $data[$this->key_id] = $id;
         $this->db->insert($this->table, $data);
     }
 
