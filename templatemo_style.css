@@ -16,6 +16,16 @@ body {
 	display: table;
 }
 
+#btn_log {
+	width: 156px;
+	height: 27px;
+	color: #ABA000;
+	background: transparent url("images/templatemo_menu.jpg") no-repeat scroll 0% 0%;
+	font-family: Tahoma;
+	font-size: 13px;
+	display: inline-block;
+}
+
 a:link, a:visited {	color: #f26521; text-decoration:none; }
 a:active, a:hover { color: #f26521; text-decoration: underline; }
 

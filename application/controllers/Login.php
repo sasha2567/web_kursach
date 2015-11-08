@@ -17,10 +17,12 @@ class Login extends CI_Controller {
 				break;
 			}
 			if($user['password'] == $user_password && $username == 'admin'){
-				redirect('admin/adminhome');
+				redirect('admin/home');
 			}
 			if($user['password'] == $user_password && $username == $user['username'])
 			{
+				if($username == "" || $user_password == "")
+					redirect('home');
 				$newdata = array(
 				   'username'  => $username,
 				   'email'     => $user['email'],

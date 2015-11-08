@@ -5,6 +5,7 @@ class Recipe extends CI_Model {
     var $table = 'recipe';
     var $product_table = 'products';
     var $recipe_product_table = 'recipe_product';
+    var $type_table = 'types';
     var $key_id = 'recipe_id';
     var $section_id = 'section_id';
     var $product_id = 'product_id';
@@ -66,10 +67,20 @@ class Recipe extends CI_Model {
                 $tmp = $var;
                 break;
             }
+            $type = $value['type_id'];
+            $this->db->where('type_id', $type);
+            $query = $this->db->get($this->type_table);
+            $tmpp = $query->result_array();
+            foreach ($tmpp as $var) {
+                $tmpp = $var;
+                break;
+            }
+            $type = $tmpp['type'];
             $tmp = $tmp['description'];
             $result[] = array(
                 'product' => $tmp,
-                'count' => $value['count']
+                'count' => $value['count'],
+                'type' => $type
             );
         }
         return $result;

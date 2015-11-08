@@ -76,12 +76,12 @@
 		<div id="templatemo_header">
 			<div id="templatemo_menu">
 				<ul>
-					<li><a href="<?=base_url();?>" <?php if($uri == '') echo 'class="current"';?>>Главная страница</a></li>
-					<li><a href="<?=base_url();?>users/news" <?php if($uri == 'users/news') echo 'class="current"';?>>Новые&nbsp;рецепты</a></li>
-					<li><a href="<?=base_url();?>users/feast" <?php if($uri == 'users/feast') echo 'class="current"';?>>На&nbsp;праздник</a></li>
-					<li><a href="<?=base_url();?>users/daily" <?php if($uri == 'users/daily') echo 'class="current"';?>>На&nbsp;каждый&nbsp;день</a></li>
-					<li><a href="<?=base_url();?>users/forum" <?php if($uri == 'users/forum') echo 'class="current"';?>>Форум</a></li>
-					<li><a href="<?=base_url();?>users/master" <?php if($uri == 'users/master') echo 'class="current"';?>>Мастер-класс</a></li>
+					<li><a href="<?=base_url();?>" <?php if($uri == 'admin/home') echo 'class="current"';?>>Главная&nbsp;страница</a></li>
+					<li><a href="<?=base_url();?>admin/addrecipe" <?php if($uri == 'admin/addrecipe') echo 'class="current"';?>>Добавить&nbsp;рецепт</a></li>
+					<li><a href="<?=base_url();?>admin/search" <?php if($uri == 'admin/search') echo 'class="current"';?>>Поиск&nbsp;рецепта</a></li>
+					<li><a href="<?=base_url();?>admin/recipelist" <?php if($uri == 'admin/recipelist') echo 'class="current"';?>>Список&nbsp;рецептов</a></li>
+					<li><a href="<?=base_url();?>admin/forum" <?php if($uri == 'admin/forum') echo 'class="current"';?>>Форум</a></li>
+					<li><a href="<?=base_url();?>admin/master" <?php if($uri == 'admin/master') echo 'class="current"';?>>Мастер-класс</a></li>
 				</ul>
 			</div>
 		</div>

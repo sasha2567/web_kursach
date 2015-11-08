@@ -13,12 +13,15 @@
             		<?php
                     foreach ($products as $value) {
                     ?>
-                    <h1><?=$value['product']?>:<?=$value['count']?></h1>
+                    <h1><?=$value['product']." : ".$value['count']." ".$value['type']?></h1>
                     <?php 
                     }
                     ?>
             	</div>
-            	<?=$item['recipe']?>
+            	<p>
+                    <?=$item['recipe']?>
+                </p> 
+
             	<div class="templatemo_section">
             	<?php
 				foreach ($coments as $value) {

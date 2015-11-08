@@ -3,8 +3,8 @@
             	<div class="templatemo_post_area">
             		<h1>Рецепты</h1>
             	</div>
-
-                <?php foreach ($recipes as $item):?>
+            	<ul>
+            	<?php foreach ($recipes as $item):?>
 					<li>
 						<a href="<?=base_url();?>users/recipes/show/<?=$item['recipe_id']?>">
 							<img src="<?=base_url();?>images/<?=$item['image']?>" />
@@ -15,3 +15,5 @@
 						</a>
 					</li>
 				<?php endforeach; ?>
+            	</ul>
+                

@@ -52,14 +52,14 @@
 				<input type="text" name="username" />
 				<label>Пароль</label>
 				<input type="password" name="user_password" />
-				<input type="submit" name="user_login_btn" value="Войти" />
+				<input type="submit" name="user_login_btn" id="btn_log" value="Войти" />
 				<?php 
 				echo form_close();
 			}
 			else
 			{
 			?>
-				<h3>Здраствуйте: <?=$username;?></h3>
+				<p>Здраствуйте: <?=$username;?></p>
 				<?php
 				$attributes = array(
 				    'class' => 'user_login', 
@@ -76,7 +76,7 @@
 		<div id="templatemo_header">
 			<div id="templatemo_menu">
 				<ul>
-					<li><a href="<?=base_url();?>" <?php if($uri == '') echo 'class="current"';?>>Главная страница</a></li>
+					<li><a href="<?=base_url();?>" <?php if($uri == '' || $uri == 'home') echo 'class="current"';?>>Главная страница</a></li>
 					<li><a href="<?=base_url();?>users/news" <?php if($uri == 'users/news') echo 'class="current"';?>>Новые&nbsp;рецепты</a></li>
 					<li><a href="<?=base_url();?>users/feast" <?php if($uri == 'users/feast') echo 'class="current"';?>>На&nbsp;праздник</a></li>
 					<li><a href="<?=base_url();?>users/daily" <?php if($uri == 'users/daily') echo 'class="current"';?>>На&nbsp;каждый&nbsp;день</a></li>

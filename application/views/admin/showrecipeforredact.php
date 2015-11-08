@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Страница редактирования рецептов</title>
-</head>
-<body>
-Панель администрирования сайта http://justcooking.16mb.com
-<?php
-require_once 'menu.php';
-?>
-Все 
 <?php
 $attributes = array(
 	'class' => 'recipe_redact', 
@@ -50,10 +39,7 @@ echo form_open('adminredact/redactcoment/'.$item->user['user_id'], $attributes);
 	<textarea rows="4" cols="80" name="coment_user"><?=$item->coment['coment']?></textarea>
 	<br />
 	<input type="submit" name="redact_coment_user" value="Сохранить изменения в коментарии" />
-<?php form_close();
+<?php echo form_close();
 echo "<br />";
 }
 ?>
-</div>
-</body>
-</html>
