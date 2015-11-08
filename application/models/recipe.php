@@ -48,12 +48,18 @@ class Recipe extends CI_Model {
         return $query->result_array();
     }
 
+    /**
+     * get info about 
+     */
     function getsection($id){
         $this->db->where($this->section_id, $id);
         $query = $this->db->get($this->table);
         return $query->result_array();
     }
 
+    /**
+     * get info about 
+     */
     function getproduct($id){
         $this->db->where($this->key_id, $id);
         $query = $this->db->get($this->recipe_product_table);
@@ -84,6 +90,24 @@ class Recipe extends CI_Model {
             );
         }
         return $result;
+    }
+
+    /**
+     * get info about 
+     */
+    function getproductlist()
+    {
+        $query = $this->db->get($this->product_table);
+        return $query->result_array();
+    }
+
+    /**
+     * get info about 
+     */
+    function gettypeslist()
+    {
+        $query = $this->db->get($this->type_table);
+        return $query->result_array();
     }
 
     /**

@@ -14,8 +14,6 @@ class User extends CI_Model {
      * add data
      */
     function add($data){
-        $id = count($this->getlist());
-        $data[$this->key_id] = $id;
         $this->db->insert($this->table, $data);
     }
 

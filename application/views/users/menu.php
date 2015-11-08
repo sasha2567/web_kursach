@@ -53,25 +53,29 @@
 				<label>Пароль</label>
 				<input type="password" name="user_password" />
 				<input type="submit" name="user_login_btn" id="btn_log" value="Войти" />
-				<?php 
+			<?php 
 				echo form_close();
+			?>
+				<a href="<?=base_url();?>registration">Зарегестрироваться</a>
+			<?php	
 			}
 			else
 			{
 			?>
-				<p>Здраствуйте: <?=$username;?></p>
-				<?php
+				<h3>Здраствуйте: <?=$username;?></h3>
+			<?php
 				$attributes = array(
 				    'class' => 'user_login', 
 				    'id' => 'form_user_login'
 				);
 				echo form_open('login/exitlog', $attributes); 
-				?>
+			?>
 				<input type="submit" name="user_login_btn" value="Выйти" />
 			<?php
 				echo form_close();
 			}
 			?>
+			
 		</div>
 		<div id="templatemo_header">
 			<div id="templatemo_menu">
