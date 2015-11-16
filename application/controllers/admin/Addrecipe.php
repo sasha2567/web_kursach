@@ -65,11 +65,13 @@ class Addrecipe extends CI_Controller {
 		{
 			$description = $_POST['recipe_description'];
 			$recipe = $_POST['recipe_recipe'];
+			$section = $_POST['select_section'];
+			$imagename = $_POST['recipe_image'];
 			$data = array(
 	            'description' => $description,
 	            'recipe' => $recipe,
-	            'section_id' => 1,
-	            'image' => '1.jpg',
+	            'section_id' => $section,
+	            'image' => $imagename,
 	            'date' => date("Y-m-d H:i:s")
 	        );
 

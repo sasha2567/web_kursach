@@ -5,6 +5,8 @@
 	var input_array = new Array(0,0);
 
 	function form_add_select_product (id) {
+		if (typeof(select_array[id]) != undefined)
+			select_array[id] = 0;
 		if(select_array[id] == 0){
 			var divname = document.getElementById("ingredients");
 			
@@ -42,7 +44,9 @@ echo form_open('admin/addrecipe/add', $attributes);
 <label>Название</label>
 <input type="text" name="recipe_description" />
 <br />
-<select>
+<input type="file" name="recipe_image" />
+<br />
+<select name="select_section">
   <option value="1">На каждый день</option>
   <option value="2">На праздник</option>
 </select>
