@@ -21,6 +21,14 @@ class Recipe extends CI_Model {
         $id = count($this->getlist()) + 1;
         $data[$this->key_id] = $id;
         $this->db->insert($this->table, $data);
+        return $id;
+    }
+
+    function addIngredients($data)
+    {
+        foreach ($data as $value) {
+            $this->db->insert($this->recipe_product_table, $value);
+        }
     }
 
     /**

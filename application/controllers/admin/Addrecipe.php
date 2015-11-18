@@ -63,6 +63,7 @@ class Addrecipe extends CI_Controller {
 	{
 		if(isset($_POST) && isset($_POST['recipe_add_btn']))
 		{
+			move_uploaded_file($_POST['recipe_image'],"images/".$_POST['recipe_image']);
 			$description = $_POST['recipe_description'];
 			$recipe = $_POST['recipe_recipe'];
 			$section = $_POST['select_section'];
@@ -74,9 +75,27 @@ class Addrecipe extends CI_Controller {
 	            'image' => $imagename,
 	            'date' => date("Y-m-d H:i:s")
 	        );
-
 	        $this->load->model('recipe');
-	        $recipes = $this->recipe->add($data);
+	        //$id = $this->recipe->add($data);
+
+	        $ingredients = array();
+	        for ($i=1; $i < 1000; $i++) { 
+	        	echo($_POST['recipe_count_ing_'.$i]."$$<br />");
+	        	if(isset($_POST['ingredient_'.$i]))
+	        	{
+	        		$ingredients[$i] = array(
+	        			'recipe_id' => 4,
+	        			'product_id' => $_POST['ingredient_'.$i],
+	        			'count' => $_POST['recipe_count_ing_'.$i],
+	        			'type_id' => $_POST['type_'.$i],
+	        		);
+	        	}
+	        	else
+	        		break;
+	        }
+	        print_r($ingredients);
+	        die();
+	        $this->recipe->addIngredients($ingredients);
 	        redirect('admin/home');
 		}
 	}
