@@ -91,6 +91,15 @@
 						</a>
 					</li>
 					<li>
+						<a href="<?=base_url();?>users/searchs/index" 
+							<?php if($uri == 'users/searchs' || $pageIndex == 4) 
+								echo 'class="current"';
+							?>
+						>
+							Поиск&nbsp;рецептов
+						</a>
+					</li>
+					<li>
 						<a href="<?=base_url();?>users/news" 
 							<?php if($uri == 'users/news' || $pageIndex == 1) 
 								echo 'class="current"';
