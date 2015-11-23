@@ -66,6 +66,7 @@ class Recipes extends CI_Controller {
 			'products' => $products,
 			'coments' => $coments,
 			'titlecoment' => $titlecoment,
+			'pageIndex' => 7,
 			'username' => $this->session->userdata('username'),
 			'title' => 'Описание рецепта'
 		);
