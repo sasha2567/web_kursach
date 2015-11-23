@@ -1,54 +1,79 @@
 <script type="text/javascript">
-	var select_count = 1;
-	var input_count = 1;
+	var select_count = 0;
+	var input_count = 0;
+	var col = new Array(); 
+	
+	var productsForSelect = [
+
+	<?php
+		foreach ($products as $value) {
+	?>
+			{'id' :  <?=$value["product_id"];?>, 'product' : '<?=$value["description"];?>'},
+	<?php
+		}
+	?>
+	];
+	var length = productsForSelect.length;
+
+	var typeForSelect = [
+	<?php
+		foreach ($types as $value) {
+	?>
+			{'id' :  <?=$value["type_id"];?>, 'type' : '<?=$value["type"];?>'},
+	<?php
+		}
+	?>
+	];
+
+	function generateSelectIng (inmass, count) {
+		var text = '<select id="ing_' + count + '" name="ingredients[' + count + '][product_id]">';
+		for (var i = 0; i < length; i++) {
+			text += '<option value="' + inmass[i]['id'] + '" >' + inmass[i]['product'] + '</option>';
+		};
+		text += '</select>';
+		return text;
+	}
+
+	function generateSelectType (inmass, count) {
+		var text = '<select id="type_' + count + '" name="ingredients[' + count + '][type_id]">';
+		for (var i = 0; i < length; i++) {
+			text += '<option value="' + inmass[i]['id'] + '" >' + inmass[i]['type'] + '</option>';
+		};
+		text += '</select>';
+		return text;
+	}
+
+	function deleteProductAsIndex (productsForSelect, index) {
+		for (var i = index; i < length - 1; i++) {
+			productsForSelect[i] = productsForSelect[i + 1];
+		};
+		length--;
+	}
 
 	function add() {
 		var idsIn = 'ing_' + select_count;
+
 		var indIn = document.getElementById(idsIn).selectedIndex + 1;
-		var idsTy = 'type_' + select_count;
-		var indTy = document.getElementById(idsTy).selectedIndex + 1;
-		var col = new Array();
-		for (var i = 1; i <= select_count; i++) {
-			col[i] = document.getElementById('recipe_count_ing_' + i).value;
-		};
-		document.getElementById('recipe_count_ing_' + select_count).value;
-		var divname = document.getElementById("ingredients");
-		
-		divname.innerHTML += '<br /><select id="ing_' + (select_count + 1) + '" name="ingredient_' + (select_count + 1) + '">' +
-		<?php
-			foreach ($products as $value) {
-		?>
-				'<option value="<?=$value["product_id"];?>"><?=$value["description"];?></option>' +
-		<?php
-			}
-		?>
-		'</select>' +
-		'<input type="text" name="recipe_count_ing_' + (select_count + 1) + '" id="recipe_count_ing_' + (select_count + 1) + '"/>' +
-		'<select id="type_' + (select_count + 1) + '" name="type_' + (select_count + 1) + '>' +
-		<?php
-			foreach ($types as $value) {
-		?>
-				'<option value="<?=$value["type_id"];?>"><?=$value["type"];?></option>'+
-		<?php
-			}
-		?>
-		'</select>';
-		$('#' + idsIn + ' :nth-child(' + indIn + ')').attr("selected", "selected");
-		$('#' + idsTy + ' :nth-child(' + indTy + ')').attr("selected", "selected");
-		for (var i = 1; i <= select_count; i++) {
-			document.getElementById('recipe_count_ing_' + i).value = col[i];
+
+		deleteProductAsIndex(productsForSelect,(indIn - 1));
+		if(length > 0){
+			$('#ingredientsDiv').append('<br />');
+			$('#ingredientsDiv').append(generateSelectIng(productsForSelect,(select_count + 1)));
+			$('#ingredientsDiv').append('<input type="text" name="ingredients[' + (select_count + 1) + '][count]" id="recipe_count_ing_' + (select_count + 1) + '"/>');
+			$('#ingredientsDiv').append(generateSelectType(typeForSelect,(select_count + 1)));
+
+			select_count++;
 		}
-		$('#' + idsIn).attr("disabled","disabled");
-		$('#' + idsTy).attr("disabled","disabled");
-		select_count++;
 	}
 </script>
 <?php
 $attributes = array(
     'class' => 'recipe_add', 
-    'id' => 'form_add_recipe'
+    'id' => 'form_add_recipe',
+	'enctype' => "multipart/form-data"    
 );
 echo form_open('admin/addrecipe/add', $attributes); 
+
 ?>
 <label>Название</label>
 <input type="text" name="recipe_description" />
@@ -59,8 +84,8 @@ echo form_open('admin/addrecipe/add', $attributes);
   <option value="1">На каждый день</option>
   <option value="2">На праздник</option>
 </select>
-<div id="ingredients">
-	<select id="ing_1" name="ingredient_1">
+<div id="ingredientsDiv">
+	<select id="ing_0" name="ingredients[0][product_id]">
 	<?php
 		foreach ($products as $value) {
 	?>
@@ -69,8 +94,8 @@ echo form_open('admin/addrecipe/add', $attributes);
 		}
 	?>
 	</select>
-	<input type="text" name="recipe_count_ing_1" id="recipe_count_ing_1"/>
-	<select id="type_1" name="type_1">
+	<input type="text" name="ingredients[0][count]" id="recipe_count_ing_0"/>
+	<select id="type_0" name="ingredients[0][type_id]">
 	<?php
 		foreach ($types as $value) {
 	?>
@@ -82,7 +107,7 @@ echo form_open('admin/addrecipe/add', $attributes);
 </div>
 <input type="button" name="add_ing" onclick="add()" value="Добавить ингредиент" />
 <div id="new_ingredients">
-	<input type="text" name="recipe_new_ing_1" onblur="form_add_input_product(1)" name="new_ingredient_1" />
+	<input type="text" name="recipe_new_ing_1" onblur="" name="new_ingredient_1" />
 	<input type="text" name="recipe_count_ing_1"/>
 	<select id="type_1">
 	<?php
@@ -94,6 +119,7 @@ echo form_open('admin/addrecipe/add', $attributes);
 	?>
 	</select>
 </div>
+<input type="button" name="add_ing_new" onclick="add_new()" value="Добавить ингредиент" />
 <label>Рецепт</label>
 <textarea rows="10" cols="80" name="recipe_recipe"></textarea>
 <br />

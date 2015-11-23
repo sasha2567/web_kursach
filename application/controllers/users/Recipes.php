@@ -84,9 +84,7 @@ class Recipes extends CI_Controller {
 		if(isset($_POST) && isset($_POST['add_coment_user']))
 		{
 			$coment = $_POST['coment_user'];
-			//$coment = iconv("UTF-8", "ISO-8859-1//IGNORE", $coment);
 			$coment = htmlspecialchars($coment, NULL, 'ISO-8859-1');
-			//die($coment.'*');
 			if(false === $this->session->userdata('user_id'))
 				$user_id = 0;
 			else

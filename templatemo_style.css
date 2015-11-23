@@ -212,12 +212,7 @@ a:active, a:hover { color: #f26521; text-decoration: underline; }
 	padding: 0;
 }
 
-.highslide-gallery img.left {
-	margin: 0 20px 10px 10px;
-	padding: 0;
-}
-
-.highslide-gallery img.right {
+.highslide-gallery div img {
 	margin: 0 0 10px 0;
 	padding: 0;
 }
@@ -248,4 +243,8 @@ a:active, a:hover { color: #f26521; text-decoration: underline; }
 	height: 0;
 	margin: 0;
 	padding: 0;
+}
+
+.image {
+	margin-bottom: 10px;
 }

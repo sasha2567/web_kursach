@@ -1,45 +1,56 @@
-<?php
-$attributes = array(
-	'class' => 'recipe_redact', 
-	'id' => 'form_redact_recipe'
-);
-echo form_open('adminredact/redact/'.$item['recipe_id'], $attributes); 
-?>
-<label>Название</label>
-<input type="text" name="recipe_description" value="<?=$item['description']?>"/>
-<br />
-<label>Ингридиенты</label>
-<input type="text" name="recipe_ingredients" value="<?=$item['ingredients']?>"/>
-<br />
-<label>Рецепт</label>
-<textarea rows="10" cols="80" name="recipe_recipe"><?=$item['recipe']?></textarea>
-<br />
-<input type="submit" name="recipe_redact_btn" value="Сохранить изменения в рецепте" />
-<?php form_close();?>
-<br />
-<br />
-<div id="comenst">
-Коментарии пользователей
-<br />
-<br />
-<?php
-foreach ($coments as $item) {
-?>
-Пользователь : <?=$item->user['username'];?>&nbsp;&nbsp;
-<a href="/adminuser/index/<?=$item->user['user_id']?>">Запретить коментировать</a>&nbsp;&nbsp;
-<a href="/adminuser/give/<?=$item->user['user_id']?>">Разрешить коментировать</a>
-<?php
-$attributes = array(
-	'class' => 'redact_coment', 
-	'id' => 'form_redact_coment'
-);
-echo "<br />";
-echo form_open('adminredact/redactcoment/'.$item->user['user_id'], $attributes);?>
-	<label>Рецепт</label>
-	<textarea rows="4" cols="80" name="coment_user"><?=$item->coment['coment']?></textarea>
-	<br />
-	<input type="submit" name="redact_coment_user" value="Сохранить изменения в коментарии" />
-<?php echo form_close();
-echo "<br />";
-}
-?>
+            <div id="templatemo_right_col">
+                 
+                <div class="templatemo_gallery">
+                    <div clacc="image">
+                        <img src="<?=base_url();?>images/<?=$item['image']?>" height="150" width="150"/>
+                    </div>
+
+                    <div class="templatemo_title">
+                        <?=$item['description']?>                        
+                    </div>
+                </div>
+                <div class="templatemo_post_area">
+                    <?php
+                    foreach ($products as $value) {
+                    ?>
+                    <h1><?=$value['product']." : ".$value['count']." ".$value['type']?></h1>
+                    <?php 
+                    }
+                    ?>
+                </div>
+                <p>
+                    <?=$item['recipe']?>
+                </p> 
+
+                <div class="templatemo_section">
+                <?php
+                foreach ($coments as $value) {
+                ?>
+                    <h1>Пользователь : <?=$value->user['username'];?></h1>
+                    <h2><?=$value->coment['datetime']?></h2>
+                    <p><?=$value->coment['coment']?></p>
+                <?php
+                }
+                ?>
+                </div>
+                <?php
+                    if(isset($username) && $username !== FALSE){
+                ?>
+                        <div id="coment_form">
+                <?php
+                        $attributes = array(
+                            'class' => 'user_login', 
+                            'id' => 'form_add_coment'
+                        );
+                        echo form_open('users/recipes/addcoment/'.$item['recipe_id'], $attributes); 
+                ?>
+                            <label>Коментарий</label>
+                            <textarea rows="4" cols="68" name="coment_user"></textarea>
+                            <br />
+                            <input type="submit" name="add_coment_user" value="Добавить коментарий" />
+                        
+                <?php 
+                        echo form_close();
+                    }
+                ?>
+                        </div>
