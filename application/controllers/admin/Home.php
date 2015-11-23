@@ -40,7 +40,7 @@ class Home extends CI_Controller {
 		$data = array(	
 			'titlecoment' => $titlecoment,
 			'username' => $this->session->userdata('username'),
-			'title' => 'Описание рецепта'
+			'title' => 'Главная страница администратора'
 		);
 		$this->load->helper('url');
 		$this->load->view('admin/menu',$data);

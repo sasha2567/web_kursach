@@ -11,6 +11,10 @@ class Coments {
     }
 }
 
+ function handle_error($user_error_message, $system_error_message) {
+ 	die ($user_error_message ." " . $system_error_message); 
+ };
+
 class Addrecipe extends CI_Controller {
 
 	public function getTitleComent()
@@ -44,7 +48,7 @@ class Addrecipe extends CI_Controller {
 		$data = array(	
 			'titlecoment' => $titlecoment,
 			'username' => $this->session->userdata('username'),
-			'title' => 'Описание рецепта'
+			'title' => 'Раздел администратора - Добавление нового рецепта'
 		);
 
 		$this->load->helper('url');
@@ -63,11 +67,17 @@ class Addrecipe extends CI_Controller {
 	{
 		if(isset($_POST) && isset($_POST['recipe_add_btn']))
 		{
-			move_uploaded_file($_POST['recipe_image'],"images/".$_POST['recipe_image']);
+			define('DIRSEP', DIRECTORY_SEPARATOR);
+			$upload_dir = __DIR__.DIRSEP."..".DIRSEP."..".DIRSEP."..".DIRSEP."images".DIRSEP;
+			$image_fildname = "recipe_image";
+
+			$upload_filename = $upload_dir . $_FILES[$image_fildname]['name'];
+			move_uploaded_file($_FILES[$image_fildname]['tmp_name'], $upload_filename);
+
 			$description = $_POST['recipe_description'];
 			$recipe = $_POST['recipe_recipe'];
 			$section = $_POST['select_section'];
-			$imagename = $_POST['recipe_image'];
+			$imagename = $_FILES[$image_fildname]['name'];
 			$data = array(
 	            'description' => $description,
 	            'recipe' => $recipe,
@@ -76,25 +86,17 @@ class Addrecipe extends CI_Controller {
 	            'date' => date("Y-m-d H:i:s")
 	        );
 	        $this->load->model('recipe');
-	        //$id = $this->recipe->add($data);
+	        $id = $this->recipe->add($data);
 
 	        $ingredients = array();
-	        for ($i=1; $i < 1000; $i++) { 
-	        	echo($_POST['recipe_count_ing_'.$i]."$$<br />");
-	        	if(isset($_POST['ingredient_'.$i]))
-	        	{
-	        		$ingredients[$i] = array(
-	        			'recipe_id' => 4,
-	        			'product_id' => $_POST['ingredient_'.$i],
-	        			'count' => $_POST['recipe_count_ing_'.$i],
-	        			'type_id' => $_POST['type_'.$i],
-	        		);
-	        	}
-	        	else
-	        		break;
-	        }
-	        print_r($ingredients);
-	        die();
+	        foreach ($_POST['ingredients'] as $ingredient) { 
+			  $ingredients[] = array(
+			    'recipe_id'  => $id,
+			    'product_id' => $ingredient['product_id'],
+			    'count'      => $ingredient['count'],
+			    'type_id'    => $ingredient['type_id'],
+			  );
+			}
 	        $this->recipe->addIngredients($ingredients);
 	        redirect('admin/home');
 		}

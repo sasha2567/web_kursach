@@ -39,6 +39,7 @@ class Home extends CI_Controller {
 		$titlecoment = $this->getTitleComent();
 		$data = array(
 			'titlecoment' => $titlecoment,
+			'pageIndex' => 0,
 			'username' => $this->session->userdata('username'),
 			'title' => 'Главная страница'
 			);

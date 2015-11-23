@@ -34,15 +34,20 @@ class News extends CI_Controller {
 		return $coments;
 	}
 
-	public function index()
+	public function index($id = 1)
 	{
 		$titlecoment = $this->getTitleComent();
 		$this->load->model('recipe');
+		$recordCount = count($this->recipe->getlist()) / 10;
 		$this->db->order_by('date', 'desc');
+		$this->db->limit (10, ($id - 1) * 10);
 		$recipes = $this->recipe->getlist();
 		$data = array(
 			'recipes' => $recipes,
 			'titlecoment' => $titlecoment,
+			'recordCount' => $recordCount,
+			'pageIndex' => 1,
+			'currentPage' => $id,
 			'username' => $this->session->userdata('username'),
 			'title' => 'Наши новинки'
 			);

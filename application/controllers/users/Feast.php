@@ -38,11 +38,15 @@ class Feast extends CI_Controller {
 	{
 		$titlecoment = $this->getTitleComent();
 		$this->load->model('recipe');
+		$recordCount = count($this->recipe->getsection(1)) / 10;
 		$this->db->limit (10, ($id - 1) * 10);
 		$recipes = $this->recipe->getsection(1);
 		$data = array(
 			'recipes' => $recipes,
 			'titlecoment' => $titlecoment,
+			'recordCount' => $recordCount,
+			'pageIndex' => 2,
+			'currentPage' => $id,
 			'username' => $this->session->userdata('username'),
 			'title' => 'Праздничные блюда'
 			);

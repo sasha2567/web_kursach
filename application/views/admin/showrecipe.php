@@ -3,11 +3,11 @@
             	<div class="templatemo_post_area">
             		<h1>Список рецептов</h1>
             	</div>
-                <ol>
+                <ul>
 				<?php foreach ($recipes as $item):?>
 					<li>
 						<a href="<?=base_url();?>admin/redact/show/<?=$item['recipe_id']?>">
-							<img src="<?=base_url();?>images/<?=$item['image']?>" />
+							<img src="<?=base_url();?>images/<?=$item['image']?>" height="150" width="150"/>
 						</a>
 						&nbsp;
 						<a href="<?=base_url();?>admin/redact/show/<?=$item['recipe_id']?>">
@@ -15,4 +15,11 @@
 						</a>
 					</li>
 				<?php endforeach; ?>
-				</ol>
+				</ul>
+				<div id="pagination">
+                	<?php 
+	                	for ($i=1; $i <= $recordCount + 1; $i++):
+                	?>
+                			<a href="<?=base_url();?>admin/recipelist/index/<?=$i?>"><?=$i?></a>
+                	<?php endfor; ?>
+                </div>

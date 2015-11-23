@@ -12,7 +12,7 @@
 <meta name="keywords" content="free design template, download web templates, Fruit And Juice Website, XHTML, CSS" />
 <meta name="description" content="Fruit And Juice - Free CSS Template, Free XHTML CSS Design Layout" />
 <link href="/templatemo_style.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="<?=base_url();?>highslide/highslide.css" />
+<!--<link rel="stylesheet" type="text/css" href="<?=base_url();?>highslide/highslide.css" />-->
 <script type="text/javascript" src="<?=base_url();?>highslide/highslide-with-gallery.js"></script>
 <script type="text/javascript">
 
@@ -80,12 +80,61 @@
 		<div id="templatemo_header">
 			<div id="templatemo_menu">
 				<ul>
-					<li><a href="<?=base_url();?>" <?php if($uri == '' || $uri == 'home') echo 'class="current"';?>>Главная страница</a></li>
-					<li><a href="<?=base_url();?>users/news" <?php if($uri == 'users/news') echo 'class="current"';?>>Новые&nbsp;рецепты</a></li>
-					<li><a href="<?=base_url();?>users/feast" <?php if($uri == 'users/feast') echo 'class="current"';?>>На&nbsp;праздник</a></li>
-					<li><a href="<?=base_url();?>users/daily" <?php if($uri == 'users/daily') echo 'class="current"';?>>На&nbsp;каждый&nbsp;день</a></li>
-					<li><a href="<?=base_url();?>forum" <?php if($uri == 'forum') echo 'class="current"';?>>Форум</a></li>
-					<li><a href="<?=base_url();?>users/master" <?php if($uri == 'users/master') echo 'class="current"';?>>Мастер-класс</a></li>
+					<li>
+						<a href="<?=base_url();?>" 
+						<?php 
+							if($uri == '' || $uri == 'home' || $pageIndex == 0) 
+								echo 'class="current"';
+						?>
+						>
+							Главная страница
+						</a>
+					</li>
+					<li>
+						<a href="<?=base_url();?>users/news" 
+							<?php if($uri == 'users/news' || $pageIndex == 1) 
+								echo 'class="current"';
+							?>
+						>
+							Новые&nbsp;рецепты
+						</a>
+					</li>
+					<li>
+						<a href="<?=base_url();?>users/feast" 
+							<?php if($uri == 'users/feast' || $pageIndex == 2) 
+								echo 'class="current"';
+							?>
+						>
+							На&nbsp;праздник
+						</a>
+					</li>
+					<li>
+						<a href="<?=base_url();?>users/daily" 
+							<?php if($uri == 'users/daily' || $pageIndex == 3) 
+								echo 'class="current"';
+							?>
+						>
+							На&nbsp;каждый&nbsp;день
+						</a>
+					</li>
+					<li>
+						<a href="<?=base_url();?>forum" 
+							<?php if($uri == 'forum') 
+								echo 'class="current"';
+							?>
+						>
+							Форум
+						</a>
+					</li>
+					<li>
+						<a href="<?=base_url();?>users/master" 
+							<?php if($uri == 'users/master') 
+								echo 'class="current"';
+							?>
+						>
+							Мастер-класс
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>

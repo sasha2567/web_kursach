@@ -2,7 +2,7 @@
                  
             	<div class="templatemo_gallery">
                     <div clacc="image">
-                        <img src="<?=base_url();?>images/<?=$item['image']?>" />
+                        <img src="<?=base_url();?>images/<?=$item['image']?>" height="150" width="150"/>
                     </div>
 
                     <div class="templatemo_title">
