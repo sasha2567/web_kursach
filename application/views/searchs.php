@@ -35,29 +35,9 @@
                 <div id="pagination">
                 	<?php
 	                	for ($i=1; $i <= $recordCount + 1; $i++):
-                			if ($pageIndex == 1){
+                			if ($pageIndex == 4){
 	                ?> 
-                				<a href="<?=base_url();?>users/news/index/<?=$i?>"
-                					<?php 
-										if($i == $currentPage) 
-											echo 'class="current"';
-									?>
-                				><?=$i?></a>
-	                <?php
-                			}
-                			if ($pageIndex == 2){
-	                ?> 
-                				<a href="<?=base_url();?>users/feast/index/<?=$i?>"
-                					<?php 
-										if($i == $currentPage) 
-											echo 'class="current"';
-									?>
-                				><?=$i?></a>
-	                <?php
-                			}
-                			if ($pageIndex == 3){
-	                ?> 
-                				<a href="<?=base_url();?>users/daily/index/<?=$i?>"
+                				<a href="<?=base_url();?>users/searchs/search/<?=$i?>"
                 					<?php 
 										if($i == $currentPage) 
 											echo 'class="current"';

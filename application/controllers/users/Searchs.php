@@ -13,6 +13,8 @@ class Coments {
 
 class Searchs extends CI_Controller {
 
+	private $searchString = "";
+
 	public function getTitleComent()
 	{
 		$this->load->model('coment');
@@ -34,13 +36,13 @@ class Searchs extends CI_Controller {
 		return $coments;
 	}
 
-	public function index($id = 1)
+	public function index()
 	{
 		$titlecoment = $this->getTitleComent();
+		$searchString = "";
 		$data = array(
 			'titlecoment' => $titlecoment,
 			'pageIndex' => 4,
-			'currentPage' => $id,
 			'username' => $this->session->userdata('username'),
 			'title' => 'Поиск рецепта'
 			);
@@ -53,9 +55,13 @@ class Searchs extends CI_Controller {
 	public function search($id = 1)
 	{
 		if(isset($_POST['user_search_btn'])){
+			$datain = $_POST['search_text'];
+			$searchString = $datain;
+		}
+		if($searchString != ""){
 			$titlecoment = $this->getTitleComent();
 			$this->load->model('recipe');
-			$datain = $_POST['search_text'];
+			
 			$this->db->like('description', $datain);
 			$this->db->limit (10, ($id - 1) * 10);
 			$recipes = $this->recipe->getlist();
