@@ -1,7 +1,6 @@
 <script type="text/javascript">
 	var select_count = 0;
 	var input_count = 0;
-	var col = new Array(); 
 	
 	var productsForSelect = [
 

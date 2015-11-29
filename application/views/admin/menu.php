@@ -81,7 +81,7 @@
 					<li><a href="<?=base_url();?>admin/home" <?php if($uri == 'admin/home') echo 'class="current"';?>>Главная&nbsp;страница</a></li>
 					<li><a href="<?=base_url();?>admin/addrecipe" <?php if($uri == 'admin/addrecipe') echo 'class="current"';?>>Добавить&nbsp;рецепт</a></li>
 					<li><a href="<?=base_url();?>admin/recipelist" <?php if($uri == 'admin/recipelist') echo 'class="current"';?>>Список&nbsp;рецептов</a></li>
-					<li><a href="<?=base_url();?>admin/search" <?php if($uri == 'admin/search') echo 'class="current"';?>>Поиск&nbsp;рецепта</a></li>
+					<li><a href="<?=base_url();?>admin/searchs/index" <?php if($uri == 'admin/search') echo 'class="current"';?>>Поиск&nbsp;рецепта</a></li>
 					<li><a href="<?=base_url();?>admin/master" <?php if($uri == 'admin/master') echo 'class="current"';?>>Мастер-класс</a></li>
 				</ul>
 			</div>

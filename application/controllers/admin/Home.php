@@ -36,6 +36,9 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('username') === false || $this->session->userdata('username') != 'admin') {
+			redirect('home');
+		}
 		$titlecoment = $this->getTitleComent();
 		$data = array(	
 			'titlecoment' => $titlecoment,

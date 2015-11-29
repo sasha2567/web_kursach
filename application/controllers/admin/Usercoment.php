@@ -5,6 +5,9 @@ class Usercoment extends CI_Controller {
 
 	public function index($id)
 	{
+		if ($this->session->userdata('username') === false || $this->session->userdata('username') != 'admin') {
+			redirect('home');
+		}
 		$this->load->model('user');
 		$item = $this->user->get($id);
 		foreach ($item as $var) {
@@ -18,6 +21,9 @@ class Usercoment extends CI_Controller {
 
 	public function give($id)
 	{
+		if ($this->session->userdata('username') === false || $this->session->userdata('username') != 'admin') {
+			redirect('home');
+		}
 		$this->load->model('user');
 		$item = $this->user->get($id);
 		foreach ($item as $var) {

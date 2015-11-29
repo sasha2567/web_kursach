@@ -36,6 +36,9 @@ class Redact extends CI_Controller {
 
 	public function show($id)
 	{
+		if ($this->session->userdata('username') === false || $this->session->userdata('username') != 'admin') {
+			redirect('home');
+		}
 		$titlecoment = $this->getTitleComent();
 		$this->load->model('recipe');
         $item = $this->recipe->get($id);
@@ -79,46 +82,23 @@ class Redact extends CI_Controller {
 		}
 	}
 
-	public function addcoment($id)
-	{
-		if(isset($_POST) && isset($_POST['add_coment_user']))
-		{
-			$coment = $_POST['coment_user'];
-			$coment = htmlspecialchars($coment, NULL, 'ISO-8859-1');
-			if(false === $this->session->userdata('user_id'))
-				$user_id = 0;
-			else
-				$user_id = $this->session->userdata('user_id');
-
-			$data = array(
-	            'coment' => $coment,
-	            'user_id' => $user_id,
-	            'recipe_id' => $id,
-	            'datetime' => date("Y-m-d H:i:s")
-	        );
-
-	        $this->load->model('coment');
-	        $this->coment->add($data);
-	        redirect('users/recipes/show/'.$id);
-		}
-	}
-
 	public function redactrecipe($id)
 	{
+		if ($this->session->userdata('username') === false || $this->session->userdata('username') != 'admin') {
+			redirect('home');
+		}
 		if(isset($_POST) && isset($_POST['recipe_redact_btn']))
 		{
 			$description = $_POST['recipe_description'];
-			$ingredients = $_POST['recipe_ingredients'];
 			$recipe = $_POST['recipe_recipe'];
 			$data = array(
 	            'description' => $description,
-	            'ingredients' => $ingredients,
 	            'recipe' => $recipe
 	        );
 
 	        $this->load->model('recipe');
 	        $recipes = $this->recipe->edit($id,$data);
-	        redirect('adminindex');
+	        redirect('admin/redact/'.$id);
 		}
 	}
 }

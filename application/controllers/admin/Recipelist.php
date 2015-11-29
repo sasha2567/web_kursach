@@ -37,6 +37,9 @@ class Recipelist extends CI_Controller {
 
 	public function index($id = 1)
 	{
+		if ($this->session->userdata('username') === false || $this->session->userdata('username') != 'admin') {
+			redirect('home');
+		}
 		$titlecoment = $this->getTitleComent();
 		$this->load->model('recipe');
 		$recordCount = count($this->recipe->getlist()) / 10;

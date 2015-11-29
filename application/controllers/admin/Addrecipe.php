@@ -40,6 +40,9 @@ class Addrecipe extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('username') === false || $this->session->userdata('username') != 'admin') {
+			redirect('home');
+		}
 		$titlecoment = $this->getTitleComent();
 		$this->load->model('recipe');
 		$products = $this->recipe->getproductlist();
@@ -65,6 +68,9 @@ class Addrecipe extends CI_Controller {
 
 	public function add()
 	{
+		if ($this->session->userdata('username') === false || $this->session->userdata('username') != 'admin') {
+			redirect('home');
+		}
 		if(isset($_POST) && isset($_POST['recipe_add_btn']))
 		{
 			define('DIRSEP', DIRECTORY_SEPARATOR);

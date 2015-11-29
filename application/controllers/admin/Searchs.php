@@ -38,6 +38,9 @@ class Searchs extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('username') === false || $this->session->userdata('username') != 'admin') {
+			redirect('home');
+		}
 		$titlecoment = $this->getTitleComent();
 		$searchString = "";
 		$data = array(
@@ -47,14 +50,17 @@ class Searchs extends CI_Controller {
 			'title' => 'Поиск рецепта'
 			);
 		$this->load->helper('url');
-		$this->load->view('users/menu',$data);
-		$this->load->view('searchs',$data);
-		$this->load->view('users/footer');
+		$this->load->view('admin/menu',$data);
+		$this->load->view('admin/search',$data);
+		$this->load->view('admin/footer');
 	}
 
 	public function search($id = 1)
 	{
-		if(isset($_POST['user_search_btn'])){
+		if ($this->session->userdata('username') === false || $this->session->userdata('username') != 'admin') {
+			redirect('home');
+		}
+		if(isset($_POST['admin_search_btn'])){
 			$datain = $_POST['search_text'];
 			$searchString = $datain;
 		}
@@ -77,14 +83,9 @@ class Searchs extends CI_Controller {
 				'title' => 'Поиск рецепта'
 				);
 			$this->load->helper('url');
-			$this->load->view('users/menu',$data);
-			$this->load->view('searchs',$data);
-			$this->load->view('users/footer');
+			$this->load->view('admin/menu',$data);
+			$this->load->view('admin/search',$data);
+			$this->load->view('admin/footer');
 		}
-	}
-
-	public function recipesearch($id = 1)
-	{
-		
 	}
 }
