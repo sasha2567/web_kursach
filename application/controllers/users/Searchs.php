@@ -61,11 +61,8 @@ class Searchs extends CI_Controller {
 		if($searchString != ""){
 			$titlecoment = $this->getTitleComent();
 			$this->load->model('recipe');
-			
-			$this->db->like('description', $datain);
-			$this->db->limit (10, ($id - 1) * 10);
-			$recipes = $this->recipe->getlist();
-			$recordCount = count($this->recipe->getlist()) / 10;
+			$recipes = $this->recipe->getsearch($datain, $id);
+			$recordCount = count($this->recipe->getsearch($datain, $id)) / 10;
 			$data = array(
 				'recipes' => $recipes,
 				'titlecoment' => $titlecoment,
@@ -85,6 +82,32 @@ class Searchs extends CI_Controller {
 
 	public function recipesearch($id = 1)
 	{
-		
+		if(isset($_POST['user_search_recipe_btn'])){
+			$ingredients = array();
+			$this->load->model('recipe');
+	        foreach ($_POST['ingredients'] as $ingredient) { 
+				$temp = $this->recipe->getproductid($ingredient);
+				$temp = $temp[0];
+				$ingredients[] = $temp['product_id'];
+			}
+			$recipeId = $this->recipe->getrecipeid($ingredients);
+			print_r($recipeId);
+			die();
+			$recordCount = count($this->recipe->getlist()) / 10;
+			$data = array(
+				'recipes' => $recipes,
+				'titlecoment' => $titlecoment,
+				'pageIndex' => 4,
+				'currentPage' => $id,
+				'searchflag' => 1,
+				'recordCount' => $recordCount,
+				'username' => $this->session->userdata('username'),
+				'title' => 'Поиск рецепта'
+				);
+			$this->load->helper('url');
+			$this->load->view('users/menu',$data);
+			$this->load->view('searchs',$data);
+			$this->load->view('users/footer');
+		}
 	}
 }

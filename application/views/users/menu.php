@@ -12,8 +12,9 @@
 <meta name="keywords" content="free design template, download web templates, Fruit And Juice Website, XHTML, CSS" />
 <meta name="description" content="Fruit And Juice - Free CSS Template, Free XHTML CSS Design Layout" />
 <link href="/templatemo_style.css" rel="stylesheet" type="text/css" />
-<!--<link rel="stylesheet" type="text/css" href="<?=base_url();?>highslide/highslide.css" />-->
+<link rel="stylesheet" type="text/css" href="<?=base_url();?>highslide/highslide.css" />
 <script type="text/javascript" src="<?=base_url();?>highslide/highslide-with-gallery.js"></script>
+<script type="text/javascript" src="<?=base_url();?>highslide/jquery.js"></script>
 <script type="text/javascript">
 
 	hs.graphicsDir = 'highslide/graphics/';

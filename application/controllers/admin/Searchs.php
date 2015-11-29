@@ -68,10 +68,8 @@ class Searchs extends CI_Controller {
 			$titlecoment = $this->getTitleComent();
 			$this->load->model('recipe');
 			
-			$this->db->like('description', $datain);
-			$this->db->limit (10, ($id - 1) * 10);
-			$recipes = $this->recipe->getlist();
-			$recordCount = count($this->recipe->getlist()) / 10;
+			$recipes = $this->recipe->getsearch($datain, $id);
+			$recordCount = count($this->recipe->getsearch($datain, $id)) / 10;
 			$data = array(
 				'recipes' => $recipes,
 				'titlecoment' => $titlecoment,

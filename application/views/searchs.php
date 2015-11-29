@@ -3,9 +3,9 @@
 				
 				function add() {
 					$('#ingredientsDiv').append('<br />');
-					$('#ingredientsDiv').append('<input type="text" name="ingredients[' + (select_count + 1) + ']" id="recipe_ing_' + (select_count + 1) + '"/>');
+					$('#ingredientsDiv').append('<input type="text" name="ingredients[' + (input_count + 1) + ']"/>');
 
-					select_count++;
+					input_count++;
 				}
 			</script>
             <div id="templatemo_right_col">
@@ -24,17 +24,20 @@
 						echo form_close();
 					?>
 					или
+					<br />
+					Поиск по ингредиентам
 					<?php
 						$attributes = array(
 						    'class' => 'user_search_recipe', 
 						    'id' => 'form_user_searc_recipe'
 						);
-						echo form_open('users/searchs/search', $attributes); 
+						echo form_open('users/searchs/recipesearch', $attributes); 
 					?>
 							<div id="ingredientsDiv">
 								<input type="text" name="inredients[0]" />
 							</div>
 							<input type="button" name="add_ing" onclick="add()" value="Добавить ингредиент" />
+							<br />
 							<input type="submit" name="user_search_recipe_btn" id="btn_search_recipe" value="Найти" />
 					<?php 
 						echo form_close();

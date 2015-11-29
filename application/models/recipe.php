@@ -112,6 +112,34 @@ class Recipe extends CI_Model {
     /**
      * get info about 
      */
+    function getproductid($value='')
+    {
+        $this->db->where('description', $value);
+        $query = $this->db->get($this->product_table);
+        return $query->result_array();
+    }
+
+    function getsearch($value='', $id = 0)
+    {
+        $this->db->like('description', $value);
+        $this->db->limit (10, ($id - 1) * 10);
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
+
+    /**
+     * get info about 
+     */
+    function getrecipeid($value = null)
+    {
+        //запрос
+        $query = $this->db->get($this->product_table);
+        return $query->result_array();
+    }
+
+    /**
+     * get info about 
+     */
     function gettypeslist()
     {
         $query = $this->db->get($this->type_table);
