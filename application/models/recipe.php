@@ -114,7 +114,7 @@ class Recipe extends CI_Model {
      */
     function getproductid($value='')
     {
-        $this->db->where('description', $value);
+        $this->db->like('description', $value);
         $query = $this->db->get($this->product_table);
         return $query->result_array();
     }
@@ -132,9 +132,16 @@ class Recipe extends CI_Model {
      */
     function getrecipeid($value = null)
     {
-        //запрос
-        $query = $this->db->get($this->product_table);
-        return $query->result_array();
+        if($value != null){
+            $str = "(".$value[0];
+            $i = 1;
+            for ($i=1; $i < count($value); $i++) { 
+                $str .= ", ".$value[$i];
+            }
+            $str .= ")";
+            $query = $this->db->query("SELECT DISTINCT `recipe_id` FROM `web_recipe_product` А WHERE NOT exists (SELECT `product_id` FROM `web_products` WHERE `product_id` in ".$str." AND NOT exists (SELECT `recipe_id`, `product_id` FROM `web_recipe_product` В WHERE В.`product_id` = `web_products`.`product_id` AND А.`recipe_id` =В.`recipe_id`))");
+            return $query->result_array();    
+        }
     }
 
     /**

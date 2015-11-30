@@ -13,7 +13,7 @@
 <meta name="description" content="Fruit And Juice - Free CSS Template, Free XHTML CSS Design Layout" />
 <link href="/templatemo_style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="<?=base_url();?>highslide/highslide.css" />
-<script type="text/javascript" src="<?=base_url();?>highslide/highslide-with-gallery.js"></script>
+<!--<script type="text/javascript" src="<?=base_url();?>highslide/highslide-with-gallery.js"></script>-->
 <script type="text/javascript" src="<?=base_url();?>highslide/jquery.js"></script>
 <script type="text/javascript">
 
@@ -129,7 +129,7 @@
 					</li>
 					<li>
 						<a href="<?=base_url();?>forum" 
-							<?php if($uri == 'forum') 
+							<?php if($uri == 'forum' || $pageIndex == 5)
 								echo 'class="current"';
 							?>
 						>
@@ -137,8 +137,8 @@
 						</a>
 					</li>
 					<li>
-						<a href="<?=base_url();?>users/master" 
-							<?php if($uri == 'users/master') 
+						<a href="<?=base_url();?>users/master/index" 
+							<?php if($uri == 'users/master/index' || $pageIndex == 6)
 								echo 'class="current"';
 							?>
 						>

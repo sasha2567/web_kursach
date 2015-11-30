@@ -1,16 +1,18 @@
             <div id="templatemo_right_col">
-                 
+                
             	<div class="templatemo_gallery">
                     <div clacc="image">
                         <img src="<?=base_url();?>images/<?=$item['image']?>" height="150" width="150"/>
                     </div>
-
+                    <br />
                     <div class="templatemo_title">
                         <?=$item['description']?>                        
                	  	</div>
                 </div>
             	<div class="templatemo_post_area">
-            		<?php
+            		Продукты:
+                    <br />
+                    <?php
                     foreach ($products as $value) {
                     ?>
                     <h1><?=$value['product']." : ".$value['count']." ".$value['type']?></h1>
@@ -18,7 +20,8 @@
                     }
                     ?>
             	</div>
-            	<p>
+            	Рецепт
+                <p class="recipe">
                     <?=$item['recipe']?>
                 </p> 
 

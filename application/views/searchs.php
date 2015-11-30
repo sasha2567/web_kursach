@@ -26,6 +26,8 @@
 					или
 					<br />
 					Поиск по ингредиентам
+					<br />
+					<br />
 					<?php
 						$attributes = array(
 						    'class' => 'user_search_recipe', 
@@ -34,7 +36,7 @@
 						echo form_open('users/searchs/recipesearch', $attributes); 
 					?>
 							<div id="ingredientsDiv">
-								<input type="text" name="inredients[0]" />
+								<input type="text" name="ingredients[0]" />
 							</div>
 							<input type="button" name="add_ing" onclick="add()" value="Добавить ингредиент" />
 							<br />

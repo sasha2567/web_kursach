@@ -14,6 +14,7 @@ class Coments {
 class Searchs extends CI_Controller {
 
 	private $searchString = "";
+	private $ingredients = null;
 
 	public function getTitleComent()
 	{
@@ -40,6 +41,7 @@ class Searchs extends CI_Controller {
 	{
 		$titlecoment = $this->getTitleComent();
 		$searchString = "";
+		$ingredients = null;
 		$data = array(
 			'titlecoment' => $titlecoment,
 			'pageIndex' => 4,
@@ -83,6 +85,7 @@ class Searchs extends CI_Controller {
 	public function recipesearch($id = 1)
 	{
 		if(isset($_POST['user_search_recipe_btn'])){
+			$titlecoment = $this->getTitleComent();
 			$ingredients = array();
 			$this->load->model('recipe');
 	        foreach ($_POST['ingredients'] as $ingredient) { 
@@ -90,10 +93,16 @@ class Searchs extends CI_Controller {
 				$temp = $temp[0];
 				$ingredients[] = $temp['product_id'];
 			}
+		}
+		if($ingredients != null){
 			$recipeId = $this->recipe->getrecipeid($ingredients);
-			print_r($recipeId);
-			die();
-			$recordCount = count($this->recipe->getlist()) / 10;
+			$recipes = array();
+			foreach ($recipeId as $value) {
+				$temp = $this->recipe->get($value['recipe_id']);
+				$temp = $temp[0];
+				$recipes[] = $temp;
+			}
+			$recordCount = count($recipes) / 10;
 			$data = array(
 				'recipes' => $recipes,
 				'titlecoment' => $titlecoment,
