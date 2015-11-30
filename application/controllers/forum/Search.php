@@ -34,18 +34,18 @@ class Search extends CI_Controller {
 		return $coments;
 	}
 
-	public function index($data = "")
+	public function index()
 	{
 		$titlecoment = $this->getTitleComent();
 		$data = array(
 			'titlecoment' => $titlecoment,
 			'pageIndex' => 0,
 			'username' => $this->session->userdata('username'),
-			'title' => 'Главная страница'
+			'title' => 'Форум'
 			);
 		$this->load->helper('url');
-		$this->load->view('users/menu',$data);
-		$this->load->view('home');
-		$this->load->view('users/footer');
+		$this->load->view('menu',$data);
+		$this->load->view('forum/home');
+		$this->load->view('footer');
 	}
 }

@@ -1,7 +1,6 @@
 <?php
 	$uri = $_SERVER['PHP_SELF'];
 	$uri = substr($uri, 11);
-	base_url();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -81,8 +80,8 @@
 					<li><a href="<?=base_url();?>admin/home" <?php if($uri == 'admin/home') echo 'class="current"';?>>Главная&nbsp;страница</a></li>
 					<li><a href="<?=base_url();?>admin/addrecipe" <?php if($uri == 'admin/addrecipe') echo 'class="current"';?>>Добавить&nbsp;рецепт</a></li>
 					<li><a href="<?=base_url();?>admin/recipelist" <?php if($uri == 'admin/recipelist') echo 'class="current"';?>>Список&nbsp;рецептов</a></li>
-					<li><a href="<?=base_url();?>admin/searchs/index" <?php if($uri == 'admin/search') echo 'class="current"';?>>Поиск&nbsp;рецепта</a></li>
-					<li><a href="<?=base_url();?>admin/master" <?php if($uri == 'admin/master') echo 'class="current"';?>>Мастер-класс</a></li>
+					<li><a href="<?=base_url();?>admin/searchs/index" <?php if($uri == 'admin/search/index') echo 'class="current"';?>>Поиск&nbsp;рецепта</a></li>
+					<li><a href="<?=base_url();?>admin/master/index" <?php if($uri == 'admin/master/index') echo 'class="current"';?>>Мастер-класс</a></li>
 				</ul>
 			</div>
 		</div>

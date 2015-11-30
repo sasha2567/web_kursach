@@ -44,8 +44,8 @@ class Home extends CI_Controller {
 			'title' => 'Главная страница'
 			);
 		$this->load->helper('url');
-		$this->load->view('users/menu',$data);
+		$this->load->view('menu',$data);
 		$this->load->view('home');
-		$this->load->view('users/footer');
+		$this->load->view('footer');
 	}
 }

@@ -74,9 +74,9 @@ class Recipes extends CI_Controller {
 		if($data != null)
 		{
 			$this->load->helper('url');
-			$this->load->view('users/menu',$data);
+			$this->load->view('menu',$data);
 			$this->load->view('users/showrecipe',$data);
-			$this->load->view('users/footer');
+			$this->load->view('footer');
 		}
 	}
 

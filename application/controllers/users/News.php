@@ -52,8 +52,8 @@ class News extends CI_Controller {
 			'title' => 'Наши новинки'
 			);
 		$this->load->helper('url');
-		$this->load->view('users/menu',$data);
+		$this->load->view('menu',$data);
 		$this->load->view('users/home',$data);
-		$this->load->view('users/footer');
+		$this->load->view('footer');
 	}
 }

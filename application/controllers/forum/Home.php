@@ -11,7 +11,7 @@ class Coments {
     }
 }
 
-class Master extends CI_Controller {
+class Home extends CI_Controller {
 
 	public function getTitleComent()
 	{
@@ -34,35 +34,29 @@ class Master extends CI_Controller {
 		return $coments;
 	}
 
-	public function index()
+	public function index($id = 1)
 	{
 		$titlecoment = $this->getTitleComent();
-		$this->load->model('masters');
-		$master = $this->masters->get();
-		if(count($master) > 0)
-			$master = $master[0];
-		else{
-			$master = null;
-		}
+		$this->load->model('forum');
+		$themes = $this->forum->gettheme($id);
+		$recordCount = count($this->forum->get());
 		$data = array(
-			'master' => $master,
 			'titlecoment' => $titlecoment,
-			'pageIndex' => 6,
+			'pageIndex' => 5,
+			'themes' => $themes,
+			'currentPage' => $id,
+			'recordCount' => $recordCount,
 			'username' => $this->session->userdata('username'),
-			'title' => 'Мастер-класс'
+			'title' => 'Форум'
 			);
 		$this->load->helper('url');
 		$this->load->view('menu',$data);
-		$this->load->view('users/master',$data);
+		$this->load->view('forum/home');
 		$this->load->view('footer');
 	}
 
-	public function write()
+	public function theme($id = 0)
 	{
-		if (isset($_POST['user_master_btn'])) {
-			$this->load->model('masters');
-			$this->masters->adduser($this->session->userdata('user_id'));
-			redirect('users/master/index');
-		}
+		
 	}
 }

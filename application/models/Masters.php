@@ -45,10 +45,10 @@ class Masters extends CI_Model {
         $query = $query->result_array();
         $query = $query[0];
         $data = array(
-            $key_id -> $query[$key_id],
-            $user_key_id -> $id
+            $this->key_id => $query[$this->key_id],
+            $this->user_key_id => $id
         );
-        $this->db->delete($this->table);
+        $this->db->delete($this->table_master, $data);
     }
     /**
      * get info
@@ -73,6 +73,11 @@ class Masters extends CI_Model {
      * get list
      */
     function getlist(){
+        $this->db->order_by('date', 'desc');
+        $query = $this->db->get($this->table);
+        $query = $query->result_array();
+        $query = $query[0];
+        $this->db->where($this->key_id, $query[$this->key_id]);
         $query = $this->db->get($this->table_master);
         return $query->result_array();
     }

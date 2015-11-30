@@ -49,9 +49,9 @@ class Searchs extends CI_Controller {
 			'title' => 'Поиск рецепта'
 			);
 		$this->load->helper('url');
-		$this->load->view('users/menu',$data);
+		$this->load->view('menu',$data);
 		$this->load->view('searchs',$data);
-		$this->load->view('users/footer');
+		$this->load->view('footer');
 	}
 
 	public function search($id = 1)
@@ -76,9 +76,9 @@ class Searchs extends CI_Controller {
 				'title' => 'Поиск рецепта'
 				);
 			$this->load->helper('url');
-			$this->load->view('users/menu',$data);
+			$this->load->view('menu',$data);
 			$this->load->view('searchs',$data);
-			$this->load->view('users/footer');
+			$this->load->view('footer');
 		}
 	}
 
@@ -114,9 +114,9 @@ class Searchs extends CI_Controller {
 				'title' => 'Поиск рецепта'
 				);
 			$this->load->helper('url');
-			$this->load->view('users/menu',$data);
+			$this->load->view('menu',$data);
 			$this->load->view('searchs',$data);
-			$this->load->view('users/footer');
+			$this->load->view('footer');
 		}
 	}
 }

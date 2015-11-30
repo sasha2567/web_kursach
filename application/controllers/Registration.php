@@ -45,9 +45,9 @@ class Registration extends CI_Controller {
 			'title' => 'Регистрация пользователя'
 			);
 		$this->load->helper('url');
-		$this->load->view('users/menu',$data);
+		$this->load->view('menu',$data);
 		$this->load->view('registration');
-		$this->load->view('users/footer');
+		$this->load->view('footer');
 	}
 
 	public function registrated()

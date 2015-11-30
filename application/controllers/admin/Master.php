@@ -36,6 +36,9 @@ class Master extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('username') === false || $this->session->userdata('username') != 'admin') {
+			redirect('home');
+		}
 		$titlecoment = $this->getTitleComent();
 		$this->load->model('masters');
 		$master = $this->masters->get();
@@ -44,25 +47,33 @@ class Master extends CI_Controller {
 		else{
 			$master = null;
 		}
+		$table = $this->masters->getlist();
+		$user = array();
+		foreach ($table as $value) {
+			$temp = $this->masters->getUser($value['user_id']);
+			$user[] = $temp[0];
+			
+		}
 		$data = array(
 			'master' => $master,
+			'users' => $user,
 			'titlecoment' => $titlecoment,
-			'pageIndex' => 6,
 			'username' => $this->session->userdata('username'),
 			'title' => 'Мастер-класс'
 			);
 		$this->load->helper('url');
-		$this->load->view('menu',$data);
-		$this->load->view('users/master',$data);
-		$this->load->view('footer');
+		$this->load->view('admin/menu',$data);
+		$this->load->view('admin/master',$data);
+		$this->load->view('admin/footer');
 	}
 
-	public function write()
+	public function delete($id)
 	{
-		if (isset($_POST['user_master_btn'])) {
-			$this->load->model('masters');
-			$this->masters->adduser($this->session->userdata('user_id'));
-			redirect('users/master/index');
+		if ($this->session->userdata('username') === false || $this->session->userdata('username') != 'admin') {
+			redirect('home');
 		}
+		$this->load->model('masters');
+		$this->masters->deleteuser($id);
+		redirect('admin/master/index');
 	}
 }
