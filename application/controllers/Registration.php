@@ -41,6 +41,7 @@ class Registration extends CI_Controller {
 		$titlecoment = $this->getTitleComent();
 		$data = array(
 			'titlecoment' => $titlecoment,
+			'pageIndex' => 7,
 			'username' => $this->session->userdata('username'),
 			'title' => 'Регистрация пользователя'
 			);
@@ -53,11 +54,11 @@ class Registration extends CI_Controller {
 	public function registrated()
 	{
 		if(isset($_POST) && isset($_POST['user_registr_btn'])){
-			$username = $_POST['user_name'];
-			$userpass1 = $_POST['user_password1'];
-			$userpass2 = $_POST['user_password2'];
-			$userfio = $_POST['user_fio'];
-			$usermail = $_POST['user_mail'];
+			$username = htmlspecialchars($_POST['user_name'], NULL, 'ISO-8859-1');
+			$userpass1 = htmlspecialchars($_POST['user_password1'], NULL, 'ISO-8859-1');
+			$userpass2 = htmlspecialchars($_POST['user_password2'], NULL, 'ISO-8859-1');
+			$userfio = htmlspecialchars($_POST['user_fio'], NULL, 'ISO-8859-1');
+			$usermail = htmlspecialchars($_POST['user_mail'], NULL, 'ISO-8859-1');
 			if($userpass1 == $userpass2){
 				$this->load->model('user');
 				$user = $this->user->getUser($username);

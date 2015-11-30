@@ -7,8 +7,8 @@ class Login extends CI_Controller {
 	{
 		if(isset($_POST) && isset($_POST['user_login_btn']))
 		{
-			$username = $_POST['username'];
-			$user_password = $_POST['user_password'];
+			$username = htmlspecialchars($_POST['username'], NULL, 'ISO-8859-1');
+			$user_password = htmlspecialchars($_POST['user_password'], NULL, 'ISO-8859-1');
 			$this->load->model('user');
 			$user = $this->user->getUser($username);
 			foreach ($user as $item) 

@@ -57,7 +57,7 @@ class Searchs extends CI_Controller {
 	public function search($id = 1)
 	{
 		if(isset($_POST['user_search_btn'])){
-			$datain = $_POST['search_text'];
+			$datain = htmlspecialchars($_POST['search_text'], NULL, 'ISO-8859-1');
 			$searchString = $datain;
 		}
 		if($searchString != ""){

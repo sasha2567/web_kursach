@@ -3,8 +3,8 @@
                 <?php
                 if($username != false){
 						$attributes = array(
-						    'class' => 'user_master', 
-						    'id' => 'form_master_login'
+						    'class' => 'user_forum', 
+						    'id' => 'form_forum_add'
 						);
 						echo form_open('forum/home/add', $attributes); 
 					?>

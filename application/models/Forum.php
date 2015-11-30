@@ -19,23 +19,26 @@ class Forum extends CI_Model {
      */
     function addtheme($data){
         $this->db->insert($this->table, $data);
+        $this->db->where('theme', $data['theme']);
+        $query = $this->db->get($this->table);
+        return $query->result_array();
     }
 
     /**
      * add data
      */
     function addmessege($t_id,$u_id,$m){
-        $query = $this->db->get($this->table);
-        $c = count($query->result_array());
+        $query = $this->db->get($this->table_messege);
+        $c = count($query->result_array()) + 1;
         $data = array(
-        	$messege_id => $c,
-        	$user_id => $u_id,
+        	$this->messege_id => $c,
+        	$this->user_id => $u_id,
         	'messege' => $m
         );
         $this->db->insert($this->table_messege, $data);
         $data = array(
-        	$messege_id => $c,
-        	$theme_id => $t_id
+        	$this->messege_id => $c,
+        	$this->key_id => $t_id
         );
         $this->db->insert($this->table_theme, $data);
     }
@@ -45,6 +48,15 @@ class Forum extends CI_Model {
      */
     function gettheme($id = 1){
         $this->db->limit (10, ($id - 1) * 10);
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
+
+    /**
+     * get info
+     */
+    function getthemebyid($id = 1){
+        $this->db->where ($this->key_id,$id);
         $query = $this->db->get($this->table);
         return $query->result_array();
     }

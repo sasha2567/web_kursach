@@ -80,9 +80,9 @@ class Addrecipe extends CI_Controller {
 			$upload_filename = $upload_dir . $_FILES[$image_fildname]['name'];
 			move_uploaded_file($_FILES[$image_fildname]['tmp_name'], $upload_filename);
 
-			$description = $_POST['recipe_description'];
-			$recipe = $_POST['recipe_recipe'];
-			$section = $_POST['select_section'];
+			$description = htmlspecialchars($_POST['recipe_description'], NULL, 'ISO-8859-1');
+			$recipe = htmlspecialchars($_POST['recipe_recipe'], NULL, 'ISO-8859-1');
+			$section = htmlspecialchars($_POST['select_section'], NULL, 'ISO-8859-1');
 			$imagename = $_FILES[$image_fildname]['name'];
 			$data = array(
 	            'description' => $description,

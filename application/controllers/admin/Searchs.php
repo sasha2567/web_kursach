@@ -61,7 +61,7 @@ class Searchs extends CI_Controller {
 			redirect('home');
 		}
 		if(isset($_POST['admin_search_btn'])){
-			$datain = $_POST['search_text'];
+			$datain = htmlspecialchars($_POST['search_text'], NULL, 'ISO-8859-1');
 			$searchString = $datain;
 		}
 		if($searchString != ""){

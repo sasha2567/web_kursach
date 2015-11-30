@@ -89,8 +89,8 @@ class Redact extends CI_Controller {
 		}
 		if(isset($_POST) && isset($_POST['recipe_redact_btn']))
 		{
-			$description = $_POST['recipe_description'];
-			$recipe = $_POST['recipe_recipe'];
+			$description = htmlspecialchars($_POST['recipe_description'], NULL, 'ISO-8859-1');
+			$recipe = htmlspecialchars($_POST['recipe_recipe'], NULL, 'ISO-8859-1');
 			$data = array(
 	            'description' => $description,
 	            'recipe' => $recipe
