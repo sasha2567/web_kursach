@@ -9,7 +9,7 @@
 						echo form_open('forum/home/add', $attributes); 
 					?>
 						<input type="text" name="theme_name">
-						<input type="submit" name="user_master_btn" value="Создать тему" />
+						<input type="submit" name="user_theme_btn" value="Создать тему" />
 					<?php
 						echo form_close();
 					}

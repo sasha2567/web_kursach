@@ -48,7 +48,10 @@ class Forum extends CI_Model {
         $query = $this->db->get($this->table);
         return $query->result_array();
     }
-
+    
+    /**
+     * get info
+     */
     function get(){
         $query = $this->db->get($this->table);
         return $query->result_array();

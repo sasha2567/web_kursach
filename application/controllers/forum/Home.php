@@ -55,8 +55,15 @@ class Home extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	public function theme($id = 0)
+	public function add()
 	{
-		
+		if(isset($_POST['user_theme_btn'])){
+			$data = array(
+				'theme' => htmlspecialchars($_POST['theme_name'], NULL, 'ISO-8859-1');
+			);
+			$this->load->model('forum');
+			$themes = $this->forum->gettheme($id);
+			redirect('forum/home/index');
+		}
 	}
 }
