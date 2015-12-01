@@ -26,6 +26,9 @@
             	<?php foreach ($messeges as $item):?>
 					<li>
 						<div>
+							<p>
+								<?=$item['username']?>
+							</p>
 							<?=$item['messege']?>	
 						</div>
 							
