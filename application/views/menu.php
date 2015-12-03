@@ -42,7 +42,6 @@
 	<div id="templatemo_container">
 		<div id="lang_div">
 			<?php
-			echo($config['language']);
 				$attributes = array(
 				    'class' => 'lang_btn', 
 				    'id' => 'form_set_lang'

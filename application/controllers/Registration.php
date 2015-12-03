@@ -62,11 +62,7 @@ class Registration extends CI_Controller {
 			if($userpass1 == $userpass2){
 				$this->load->model('user');
 				$user = $this->user->getUser($username);
-				foreach ($user as $item) 
-				{
-					$user = $item;
-					break;
-				}
+				$user = $user[0];
 				if($user == false){
 					echo "4<br />";
 					$data = array(
@@ -78,11 +74,7 @@ class Registration extends CI_Controller {
 					);
 					$this->user->add($data);
 					$userid = $this->user->getUser($username);
-					foreach ($userid as $item) 
-					{
-						$userid = $item;
-						break;
-					}
+					$userid = $userid[0];
 					$userid = $userid['user_id'];
 					$newdata = array(
 					   'username'  => $username,
