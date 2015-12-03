@@ -1,5 +1,11 @@
 ﻿<?php
-
+$lang = 'ru';
+if(isset($_POST['lang'])){
+	if($_POST['lang'] == 'ru')
+		$config['language'] = 'ru';
+	if($_POST['lang'] == 'ukr')
+		$config['language'] = 'ukr';
+} 
 /**
  * CodeIgniter
  *

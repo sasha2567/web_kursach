@@ -40,6 +40,21 @@
 <body>
 	
 	<div id="templatemo_container">
+		<div id="lang_div">
+			<?php
+			echo($config['language']);
+				$attributes = array(
+				    'class' => 'lang_btn', 
+				    'id' => 'form_set_lang'
+				);
+				echo form_open('index.php', $attributes); 
+			?>
+				<input type="button" name="lang" value="ru" />
+				<input type="button" name="lang" value="ukr" />
+			<?php
+				echo form_close();
+			?>
+		</div>
 		<div id="autorise">
 			<?php
 			if(!isset($username) || $username === FALSE){

@@ -16,6 +16,10 @@ body {
 	display: table;
 }
 
+#lang_div {
+	float: left;
+}
+
 #btn_log {
 	width: 156px;
 	height: 27px;
