@@ -1,7 +1,4 @@
-<?php
-	$uri = $_SERVER['PHP_SELF'];
-	$uri = substr($uri, 11);
-?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,9 +8,9 @@
 </title>
 <meta name="keywords" content="free design template, download web templates, Fruit And Juice Website, XHTML, CSS" />
 <meta name="description" content="Fruit And Juice - Free CSS Template, Free XHTML CSS Design Layout" />
-<link href="/templatemo_style.css" rel="stylesheet" type="text/css" />
+<link href="<?=base_url();?>templatemo_style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="<?=base_url();?>highslide/highslide.css" />
-<!--<script type="text/javascript" src="<?=base_url();?>highslide/highslide-with-gallery.js"></script>-->
+<script type="text/javascript" src="<?=base_url();?>highslide/highslide-with-gallery.js"></script>
 <script type="text/javascript" src="<?=base_url();?>highslide/jquery.js"></script>
 <script type="text/javascript">
 
@@ -41,18 +38,8 @@
 	
 	<div id="templatemo_container">
 		<div id="lang_div">
-			<?php
-				$attributes = array(
-				    'class' => 'lang_btn', 
-				    'id' => 'form_set_lang'
-				);
-				echo form_open('index.php', $attributes); 
-			?>
-				<input type="button" name="lang" value="ru" />
-				<input type="button" name="lang" value="ukr" />
-			<?php
-				echo form_close();
-			?>
+			<a href="<?=base_url();?>language/index/1">rus</a>
+			<a href="<?=base_url();?>language/index/2">eng</a>
 		</div>
 		<div id="autorise">
 			<?php
@@ -63,29 +50,31 @@
 				);
 				echo form_open('login/logined', $attributes); 
 				?>
-				<label>Имя пользователя</label>
+				<label><?php if($lang == 'rus') echo "Имя пользователя"; else echo "User name";?></label>
 				<input type="text" name="username" />
-				<label>Пароль</label>
+				<label><?php if($lang == 'rus') echo "Пароль"; else echo "Password";?></label>
 				<input type="password" name="user_password" />
-				<input type="submit" name="user_login_btn" id="btn_log" value="Войти" />
+				<input type="submit" name="user_login_btn" id="btn_log" value="<?php if($lang == 'rus') echo 'Войти'; else echo 'Login';?>" />
 			<?php 
 				echo form_close();
 			?>
-				<a href="<?=base_url();?>registration">Зарегестрироваться</a>
-			<?php	
+				<div id="registr">
+					<a href="<?=base_url();?>registration"><?php if($lang == 'rus') echo "Зарегестрируются"; else echo "Registrated";?></a>
+				</div>
+			<?php
 			}
 			else
 			{
 			?>
-				<h3>Здраствуйте: <?=$username;?></h3>
+				<h3><?php if($lang == 'rus') echo 'Здраствуйте'; else echo 'Hello';?>: <?=$username;?></h3>
 			<?php
 				$attributes = array(
-				    'class' => 'user_login', 
+				    'class' => 'user_login',
 				    'id' => 'form_user_login'
 				);
-				echo form_open('login/exitlog', $attributes); 
+				echo form_open('login/exitlog', $attributes);
 			?>
-				<input type="submit" name="user_login_btn" value="Выйти" />
+				<input type="submit" name="user_login_btn" id="btn_log" value="<?php if($lang == 'rus') echo 'Выйти'; else echo 'Logout';?>" />
 			<?php
 				echo form_close();
 			}
@@ -97,82 +86,81 @@
 				<ul>
 					<li>
 						<a href="<?=base_url();?>" 
-						<?php 
-							if($uri == '' || $uri == 'home' || $pageIndex == 0) 
-								echo 'class="current"';
-						?>
-						>
-							Главная страница
-						</a>
-					</li>
-					<li>
-						<a href="<?=base_url();?>users/searchs/index" 
-							<?php if($uri == 'users/searchs' || $pageIndex == 4) 
+							<?php if($pageIndex == 0)
 								echo 'class="current"';
 							?>
 						>
-							Поиск&nbsp;рецептов
+							<?php if($lang == 'rus') echo 'Главная страница'; else echo 'Main page';?>
 						</a>
 					</li>
 					<li>
-						<a href="<?=base_url();?>users/news" 
-							<?php if($uri == 'users/news' || $pageIndex == 1) 
+						<a href="<?=base_url();?>user/user_search/index" 
+							<?php if($pageIndex == 1)
 								echo 'class="current"';
 							?>
 						>
-							Новые&nbsp;рецепты
+							<?php if($lang == 'rus') echo 'Поиск рецептов'; else echo 'Search recipe';?>
 						</a>
 					</li>
 					<li>
-						<a href="<?=base_url();?>users/feast" 
-							<?php if($uri == 'users/feast' || $pageIndex == 2) 
+						<a href="<?=base_url();?>user/user_home/news" 
+							<?php if($pageIndex == 2)
 								echo 'class="current"';
 							?>
 						>
-							На&nbsp;праздник
+							<?php if($lang == 'rus') echo 'Новые рецепты'; else echo 'New recipe';?>
 						</a>
 					</li>
 					<li>
-						<a href="<?=base_url();?>users/daily" 
-							<?php if($uri == 'users/daily' || $pageIndex == 3) 
+						<a href="<?=base_url();?>user/user_home/feast" 
+							<?php if($pageIndex == 3)
 								echo 'class="current"';
 							?>
 						>
-							На&nbsp;каждый&nbsp;день
+							<?php if($lang == 'rus') echo 'Праздничные блюда'; else echo 'Holiday recipes';?>
 						</a>
 					</li>
 					<li>
-						<a href="<?=base_url();?>forum" 
-							<?php if($uri == 'forum' || $pageIndex == 5)
+						<a href="<?=base_url();?>user/user_home/daily" 
+							<?php if($pageIndex == 4)
 								echo 'class="current"';
 							?>
 						>
-							Форум
+							<?php if($lang == 'rus') echo 'Ежедневные блюда'; else echo 'Everyday recipes';?>
 						</a>
 					</li>
 					<li>
-						<a href="<?=base_url();?>users/master/index" 
-							<?php if($uri == 'users/master/index' || $pageIndex == 6)
+						<a href="<?=base_url();?>forum/home" 
+							<?php if($pageIndex == 5)
 								echo 'class="current"';
 							?>
 						>
-							Мастер-класс
+							<?php if($lang == 'rus') echo 'Форум'; else echo 'Forum';?>
+						</a>
+					</li>
+					<li>
+						<a href="<?=base_url();?>user/user_master/show" 
+							<?php if($pageIndex == 6)
+								echo 'class="current"';
+							?>
+						>
+							<?php if($lang == 'rus') echo 'Мастер-класс'; else echo 'Master-class';?>
 						</a>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<div id="templatemo_content_area">	
+		<div id="templatemo_content_area">
 			<div id="templatemo_left_col">
 				<div class="templatemo_section">
-					<h1>Последнии коментарии</h1>
+					<h1><?php if($lang == 'rus') echo 'Последнии коментарии'; else echo 'Last coments';?></h1>
 						<?php
 						if(isset($titlecoment)){
-							foreach ($titlecoment as $value) {?>
-								<h2><?=$value->user['username'];?></h2>
-								<p><?=$value->coment['coment'];?></p>
+							foreach ($titlecoment as $value) :?>
+								<h2><?=$value['user']['username'];?></h2>
+								<p><?=$value['coment']['coment'];?></p>
 						<?php
-							}
+							endforeach;
 						}
 						?>
 						

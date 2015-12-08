@@ -1,4 +1,7 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 			<div id="templatemo_right_col">
 				<div class="templatemo_post_area">
-					<h1>Главная страница</h1>
+					<div id="container">
+						<h1 id="headerform"><?php if($lang == 'rus') echo 'Главная страница'; else echo 'Main page';?></h1>
+					</div>
 				</div>

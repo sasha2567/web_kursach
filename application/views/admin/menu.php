@@ -40,48 +40,98 @@
 <body>
 	
 	<div id="templatemo_container">
+		<div id="lang_div">
+			<a href="<?=base_url();?>language/index/1">rus</a>
+			<a href="<?=base_url();?>language/index/2">eng</a>
+		</div>
 		<div id="autorise">
 			<?php
-			if(!isset($username) || $username == FALSE){
+			if(!isset($username) || $username === FALSE){
 				$attributes = array(
 				    'class' => 'user_login', 
 				    'id' => 'form_user_login'
 				);
 				echo form_open('login/logined', $attributes); 
 				?>
-				<label>Имя пользователя</label>
+				<label><?php if($lang == 'rus') echo "Имя пользователя"; else echo "User name";?></label>
 				<input type="text" name="username" />
-				<label>Пароль</label>
+				<label><?php if($lang == 'rus') echo "Пароль"; else echo "Password";?></label>
 				<input type="password" name="user_password" />
-				<input type="submit" name="user_login_btn" value="Войти" />
-				<?php 
+				<input type="submit" name="user_login_btn" id="btn_log" value="<?php if($lang == 'rus') echo 'Войти'; else echo 'Login';?>" />
+			<?php 
 				echo form_close();
+			?>
+				<div id="registr">
+					<a href="<?=base_url();?>registration"><?php if($lang == 'rus') echo "Зарегестрируются"; else echo "Registrated";?></a>
+				</div>
+			<?php
 			}
 			else
 			{
 			?>
-				<h3>Здраствуйте: <?=$username;?></h3>
-				<?php
+				<h3><?php if($lang == 'rus') echo 'Здраствуйте'; else echo 'Hello';?>: <?=$username;?></h3>
+			<?php
 				$attributes = array(
-				    'class' => 'user_login', 
+				    'class' => 'user_login',
 				    'id' => 'form_user_login'
 				);
-				echo form_open('login/exitlog', $attributes); 
-				?>
-				<input type="submit" name="user_login_btn" value="Выйти" />
+				echo form_open('login/exitlog', $attributes);
+			?>
+				<input type="submit" name="user_login_btn" id="btn_log" value="<?php if($lang == 'rus') echo 'Выйти'; else echo 'Logout';?>" />
 			<?php
 				echo form_close();
 			}
 			?>
+			
 		</div>
 		<div id="templatemo_header">
 			<div id="templatemo_menu">
 				<ul>
-					<li><a href="<?=base_url();?>admin/home" <?php if($uri == 'admin/home') echo 'class="current"';?>>Главная&nbsp;страница</a></li>
-					<li><a href="<?=base_url();?>admin/addrecipe" <?php if($uri == 'admin/addrecipe') echo 'class="current"';?>>Добавить&nbsp;рецепт</a></li>
-					<li><a href="<?=base_url();?>admin/recipelist" <?php if($uri == 'admin/recipelist') echo 'class="current"';?>>Список&nbsp;рецептов</a></li>
-					<li><a href="<?=base_url();?>admin/searchs/index" <?php if($uri == 'admin/search/index') echo 'class="current"';?>>Поиск&nbsp;рецепта</a></li>
-					<li><a href="<?=base_url();?>admin/master/index" <?php if($uri == 'admin/master/index') echo 'class="current"';?>>Мастер-класс</a></li>
+					<li>
+						<a href="<?=base_url();?>admin/admin_home" 
+							<?php if($pageIndex == 0)
+								echo 'class="current"';
+							?>
+						>
+							<?php if($lang == 'rus') echo 'Главная страница'; else echo 'Main page';?>
+						</a>
+					</li>
+					<li>
+						<a href="<?=base_url();?>admin/admin_search/index" 
+							<?php if($pageIndex == 1)
+								echo 'class="current"';
+							?>
+						>
+							<?php if($lang == 'rus') echo 'Поиск рецептов'; else echo 'Search recipe';?>
+						</a>
+					</li>
+					<li>
+						<a href="<?=base_url();?>admin/admin_recipe/showadd" 
+							<?php if($pageIndex == 2)
+								echo 'class="current"';
+							?>
+						>
+							<?php if($lang == 'rus') echo 'Добавление рецепта'; else echo 'Add recipe';?>
+						</a>
+					</li>
+					<li>
+						<a href="<?=base_url();?>admin/admin_home/listrecipe" 
+							<?php if($pageIndex == 3)
+								echo 'class="current"';
+							?>
+						>
+							<?php if($lang == 'rus') echo 'Список рецептов'; else echo 'List of recipes';?>
+						</a>
+					</li>
+					<li>
+						<a href="<?=base_url();?>admin/admin_master" 
+							<?php if($pageIndex == 4)
+								echo 'class="current"';
+							?>
+						>
+							<?php if($lang == 'rus') echo 'Мастер-класс'; else echo 'Master-class';?>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -92,8 +142,8 @@
 						<?php
 						if(isset($titlecoment)){
 							foreach ($titlecoment as $value) {?>
-								<h2><?=$value->user['username'];?></h2>
-								<p><?=$value->coment['coment'];?></p>
+								<h2><?=$value['user']['username'];?></h2>
+								<p><?=$value['coment']['coment'];?></p>
 						<?php
 							}
 						}

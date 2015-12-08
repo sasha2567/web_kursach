@@ -3,6 +3,7 @@
 class Coment extends CI_Model {
     
     var $table = 'coment';
+    var $table_user = 'user';
     var $key_id = 'coment_id';
     var $user_id = 'user_id';
     var $recipe_id = 'recipe_id';
@@ -61,5 +62,23 @@ class Coment extends CI_Model {
     function getlist(){
         $query = $this->db->get($this->table);
         return $query->result_array();
+    }
+
+    function gettitlecoment(){
+        $this->db->order_by('datetime', 'desc');
+        $this->db->limit (5, 0);
+        $query = $this->db->get($this->table);
+
+        $coments = array();
+        
+        $coment = $query->result_array();
+        foreach ($coment as $value) {
+            $this->db->where($this->user_id,$value['user_id']);
+            $temp = $this->db->get($this->table_user);
+            $temp = $temp->result_array();
+            $temp = $temp[0];
+            $coments[] = array('user' => $temp, 'coment' => $value);
+        }
+        return $coments;
     }
 }

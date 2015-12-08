@@ -1,53 +1,38 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Coments {
-	public $coment = null;
-	public $user = null;
-
-	function __construct($c,$u){
-        $this->coment = $c;
-        $this->user = $u;
-    }
-}
-
 class Home extends CI_Controller {
-
-	public function getTitleComent()
-	{
-		$this->load->model('coment');
-		$this->db->order_by('datetime', 'desc');
-		$this->db->limit (5, 0);
-		$coment = $this->coment->getlist();
-		
-		$this->load->model('user');
-		$users = array();
-		$coments = array();
-		foreach ($coment as $value) {
-			$temp = $this->user->get($value['user_id']);
-			foreach ($temp as $var) {
-				$temp = $var;
-				break;
-				}
-			$coments[] = new Coments($value,$temp);
-		}
-		return $coments;
-	}
 
 	public function index($id = 1)
 	{
-		$titlecoment = $this->getTitleComent();
+		$this->load->model('coment');
+		$titlecoment = $this->coment->gettitlecoment();
+		$lang = $this->session->userdata('language');
+		if($lang === FALSE)
+			$lang = 'rus';
+		if($lang == 'rus') $title = 'Темы форума'; else $title = 'Themes';
 		$this->load->model('forum');
+
 		$themes = $this->forum->gettheme($id);
 		$recordCount = count($this->forum->get());
+
+		$this->load->library('pagination');
+		$config['base_url'] = base_url().'user/user_home/news';
+		$config['total_rows'] = $recordCount;
+		$config['per_page'] = 10;
+		$config['use_page_numbers'] = TRUE;
+		$this->pagination->initialize($config);
+		$pagination_string = $this->pagination->create_links();
+
 		$data = array(
 			'titlecoment' => $titlecoment,
 			'pageIndex' => 5,
 			'themes' => $themes,
 			'currentPage' => $id,
-			'recordCount' => $recordCount,
+			'lang' => $lang,
+			'pagination' => $pagination_string,
 			'username' => $this->session->userdata('username'),
-			'title' => 'Форум'
+			'title' => $title
 			);
 		$this->load->helper('url');
 		$this->load->view('menu',$data);
@@ -57,20 +42,37 @@ class Home extends CI_Controller {
 
 	public function add()
 	{
-		if(isset($_POST['user_theme_btn'])){
+		$this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('theme_name', 'Имя темы форума', 'required|is_unique[theme.theme]',
+				array(
+		                'required'      => 'Вы не ввели %s.',
+		                'is_unique'     => 'Такой %s уже существует.'
+		        )
+		);
+
+		if ($this->form_validation->run() == TRUE)
+		{
 			$data = array(
-				'theme' => htmlspecialchars($_POST['theme_name'], NULL, 'ISO-8859-1')
+				'theme' => htmlspecialchars($this->input->post('theme_name'), NULL, 'ISO-8859-1'),
+				'date' => date("Y-m-d H:i:s")
 			);
 			$this->load->model('forum');
-			$theme = $this->forum->addtheme($id);
+			$theme = $this->forum->addtheme($data);
 			$theme = $theme[0];
 			redirect('forum/home/show/'.$theme['theme_id']);
 		}
+		redirect('forum/home/index');
 	}
 
 	public function show($id = 0)
 	{
-		$titlecoment = $this->getTitleComent();
+		$this->load->model('coment');
+		$titlecoment = $this->coment->gettitlecoment();
+		$lang = $this->session->userdata('language');
+		if($lang === FALSE)
+			$lang = 'rus';
+		if($lang == 'rus') $title = 'Темы форума'; else $title = 'Themes';
 		$this->load->model('forum');
 		$messeges = $this->forum->getmessege($id);
 		$themeName = $this->forum->getthemebyid($id);
@@ -82,6 +84,7 @@ class Home extends CI_Controller {
 			'themeId' => $id,
 			'themeName' => $themeName,
 			'messeges' => $messeges,
+			'lang' => $lang,
 			'username' => $this->session->userdata('username'),
 			'title' => 'Форум'
 			);
@@ -93,11 +96,20 @@ class Home extends CI_Controller {
 
 	public function addmessege($id = 0)
 	{
-		if(isset($_POST['user_messege_btn'])){
-			$messege = htmlspecialchars($_POST['user_messege'], NULL, 'ISO-8859-1');
+		$this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('user_messege', 'Сообщение пользователя', 'required',
+				array(
+		                'required'      => 'Вы не ввели %s.'
+		        )
+		);
+        if ($this->form_validation->run() == TRUE)
+		{
+			$messege = htmlspecialchars($this->input->post('user_messege'), NULL, 'ISO-8859-1');
 			$this->load->model('forum');
 			$theme = $this->forum->addmessege($id, $this->session->userdata('user_id'), $messege);
 			redirect('forum/home/show/'.$id);
 		}
+		redirect('forum/home/show/'.$id);
 	}
 }

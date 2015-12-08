@@ -24,6 +24,17 @@ class Recipe extends CI_Model {
         return $id;
     }
 
+    function addProduct($data)
+    {
+        $this->db->insert($this->product_table, $data);
+        $id = null;
+        $this->db->where('description', $data['description']);
+        $query = $this->db->get($this->product_table);
+        $query = $query->result_array();
+        $id = $query[0][$this->product_id];
+        return $id;
+    }
+
     function addIngredients($data)
     {
         foreach ($data as $value) {
@@ -42,9 +53,15 @@ class Recipe extends CI_Model {
     /**
      * delete data
      */
-    function delete($id){
+    function delete($id = 0){
         $this->db->where($this->key_id, $id);
         $this->db->delete($this->table);
+    }
+
+    function deleteIngredients($id = 1)
+    {
+        $this->db->where($this->key_id, $id);
+        $this->db->delete($this->recipe_product_table);
     }
 
     /**
@@ -77,24 +94,18 @@ class Recipe extends CI_Model {
             $this->db->where($this->product_id, $value[$this->product_id]);
             $query = $this->db->get($this->product_table);
             $tmp = $query->result_array();
-            foreach ($tmp as $var) {
-                $tmp = $var;
-                break;
-            }
+            $tmp = $tmp[0];
             $type = $value['type_id'];
             $this->db->where('type_id', $type);
             $query = $this->db->get($this->type_table);
             $tmpp = $query->result_array();
-            foreach ($tmpp as $var) {
-                $tmpp = $var;
-                break;
-            }
-            $type = $tmpp['type'];
-            $tmp = $tmp['description'];
+            $tmpp = $tmpp[0];
             $result[] = array(
-                'product' => $tmp,
+                'product_id' => $tmp['product_id'],
+                'product' => $tmp['description'],
                 'count' => $value['count'],
-                'type' => $type
+                'type' => $tmpp['type'],
+                'type_id' => $tmpp['type_id']
             );
         }
         return $result;
@@ -157,6 +168,44 @@ class Recipe extends CI_Model {
      * get list of 
      */
     function getlist(){
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
+
+    function getnews($id = 1)
+    {
+        $this->db->order_by('date', 'desc');
+        $this->db->limit (10, ($id - 1) * 10);
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
+
+    function getdaily($id = 1)
+    {
+        $this->db->where($this->section_id, 2);
+        $this->db->limit (10, ($id - 1) * 10);
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
+
+    function dailylist()
+    {
+        $this->db->where($this->section_id, 2);
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
+
+    function getfeast($id = 1)
+    {
+        $this->db->where($this->section_id, 1);
+        $this->db->limit (10, ($id - 1) * 10);
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
+
+    function feastlist()
+    {
+        $this->db->where($this->section_id, 1);
         $query = $this->db->get($this->table);
         return $query->result_array();
     }

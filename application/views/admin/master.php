@@ -1,58 +1,65 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 			<div id="templatemo_right_col">
-				<div class="templatemo_post_area">
-					<h1>Ближайший мастер-класс</h1>
-				</div>
+				
 				<?php
-				if(isset($master)){
+				if(isset($masters)){
+					foreach ($masters as $value) {
 				?>
-					<div class="master">
-						<h3>
-							Тема: <?=$master['subject']?>
-						</h3>
-						<p>
-							Описание: <?=$master['description']?>
-						</p>
+					<div id="container">
+						<div id="body">
+					
+							<div class="master">
+								<a id="masterdel" href="<?=base_url();?>admin/admin_master/deletemaster/<?=$value['master_id']?>">
+									<?php if($lang == 'rus') echo 'Проведен'; else echo 'Performed';?>
+								</a>
+								<h1 id="headerform"><?php if($lang == 'rus') echo 'Тема:'; else echo 'Subject:';?>
+									<a href="<?=base_url();?>admin/admin_master/show/<?=$value['master_id']?>">
+										<?=$value['subject']?>
+									</a>
+								</h1>
+							</div>
+						</div>
 					</div>
-					<p>
-						Приглашенные пользователи
-					</p>
-					<table>
-						<th>
-							<td>
-								Никнейм
-							</td>
-							<td>
-								ФИО
-							</td>
-							<td>
-								Удалить
-							</td>	
-						</th>
-				<?php
-					foreach ($users as $value) {
-				?>
-						<tr>
-							<td>
-								<?=$value['username']?>
-							</td>
-							<td>
-								<?=$value['fio']?>
-							</td>
-							<td>
-								<a href="<?=base_url();?>admin/master/delete/<?=$value['user_id']?>">Удалить</a>
-							</td>
-						</tr>
 				<?php
 					}
-				?>
-					</table>
-				<?php
-				}
-				else{
-				?>
-					<h3>
-						Форма добавления мастер-класса
-					</h3>
-				<?php
 				}
 				?>
+				<script type="text/javascript">
+					function validete () {
+						var string = $('dateprovide').value();
+						var t = /\d\d\d\d-\d\d\-\d\d\s\d\d:\d\d:\d\d/;
+						var result = t.exec(string);
+						if(result)
+							return true;
+						return false;
+					}
+				</script>
+				<div id="container">
+					<div id="body">
+						<h1 id="headerform"><?php if($lang == 'rus') echo 'Добавить мастер-класс'; else echo 'Add master-class';?></h1>
+					<?php
+						if(isset($username) && $username !== FALSE){
+							$attributes = array(
+							    'class' => 'admin_master', 
+							    'id' => 'form_master_add'
+							);
+							echo form_open('admin/admin_master/add', $attributes); 
+					?>
+							<h3><?php if($lang == 'rus') echo 'Тема'; else echo 'Subject';?></h3>
+							<input type="text" name="subject" />
+							<h3><?php if($lang == 'rus') echo 'Описание'; else echo 'Description';?></h3>
+							<input type="text" name="description" />
+							<h3><?php if($lang == 'rus') echo 'Дата проведения'; else echo 'Date provide';?></h3>
+							<input type="text" name="dateprovide" />
+							<div id="submit">
+								<input type="submit" onclick="validate()" name="admin_master_btn" value="<?php if($lang == 'rus') echo 'Добавить'; else echo 'Add';?>" />
+							</div>
+					<?php
+							echo form_close();
+							echo validation_errors();
+						}
+					?>
+					</div>
+				</div>
+
+				
